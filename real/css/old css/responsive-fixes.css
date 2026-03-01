@@ -67,6 +67,11 @@ svg {
     display: none;
 }
 
+.navigation.nav-clicked .submenu-1 {
+    visibility: hidden !important;
+    display: none !important;
+}
+
 .mid,
 .indexmid,
 .Profilemid,

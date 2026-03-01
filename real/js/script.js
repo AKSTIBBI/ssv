@@ -2502,12 +2502,48 @@ else if (sectionId === 'manageToppers') {
 const hamburger = document.getElementById('hamburger-menu');
 const navigation = document.querySelector('.navigation');
 
+function closeNavigationAfterSelection() {
+    const nav = document.querySelector('.navigation');
+    const ham = document.getElementById('hamburger-menu');
+    const toggle = document.getElementById('menu-toggle');
+
+    if (!nav) return;
+
+    // Force-close dropdown visibility state after selecting a final item.
+    nav.classList.add('nav-clicked');
+    nav.classList.remove('active');
+
+    if (ham) ham.classList.remove('active');
+    if (toggle) toggle.classList.remove('active');
+
+    if (document.activeElement && typeof document.activeElement.blur === 'function') {
+        document.activeElement.blur();
+    }
+
+    setTimeout(() => {
+        nav.classList.remove('nav-clicked');
+    }, 250);
+}
+
 if (hamburger && navigation) {
     hamburger.addEventListener('click', () => {
         navigation.classList.toggle('active');
         hamburger.classList.toggle('active');
     });
 }
+
+document.addEventListener('click', (event) => {
+    const clickedLink = event.target.closest('.navigation a');
+    if (!clickedLink) return;
+
+    const isSubmenuLink = !!clickedLink.closest('.submenu-1');
+    const isHomeLink = !!clickedLink.closest('.home');
+
+    // Close only on final selections, not on top-level menu openers.
+    if (isSubmenuLink || isHomeLink) {
+        closeNavigationAfterSelection();
+    }
+});
 
     // Marquee for notices
     const noticesMarquee = document.getElementById('noticesMarquee');
