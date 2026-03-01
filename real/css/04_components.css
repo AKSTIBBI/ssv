@@ -1,0 +1,463 @@
+.marquee_notice {
+  margin: 0 auto;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid #f4dc99;
+  background: #fff4cd;
+  color: #7a4e0e;
+  font-weight: 600;
+}
+
+.red {
+  color: var(--color-danger);
+  font-weight: 700;
+}
+
+.indexmid1 h2 {
+  font-size: clamp(1.3rem, 2vw, 2rem);
+  color: var(--color-primary);
+}
+
+.indexmid1 h3 {
+  margin-top: var(--space-2);
+  font-size: clamp(1rem, 1.8vw, 1.3rem);
+  color: var(--color-muted);
+}
+
+.indexmid1 p {
+  margin-top: var(--space-4);
+  color: #2a4258;
+}
+
+.indexmid21,
+.indexmid22 {
+  padding: var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: linear-gradient(180deg, #ffffff 0%, #f7fbff 100%);
+}
+
+.indexmid21 ul,
+.indexmid22 ul {
+  margin-top: var(--space-3);
+  padding-left: 18px;
+}
+
+.indexmid21 li,
+.indexmid22 li {
+  margin-bottom: var(--space-2);
+}
+
+.facilities-section {
+  margin-top: var(--space-7);
+  padding: var(--space-6);
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, #0b3a66 0%, #0a5a84 100%);
+  color: #ffffff;
+}
+
+.facilities-section h2 {
+  margin-bottom: var(--space-4);
+  font-size: clamp(1.4rem, 2.2vw, 2.2rem);
+}
+
+.facilities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-4);
+}
+
+.facility {
+  padding: var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.facility:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.facility-icon {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto var(--space-3);
+}
+
+.facility h3,
+.facility p,
+.read-more {
+  color: #0d2539;
+}
+
+.read-more {
+  font-weight: 700;
+}
+
+.color-1 {
+  background: #d7f8e4;
+}
+
+.color-3 {
+  background: #fff2bf;
+}
+
+.color-8 {
+  background: #c7f4ff;
+}
+
+.footer-title {
+  margin-bottom: var(--space-3);
+  color: #ffffff;
+}
+
+.footer-section ul {
+  list-style: none;
+}
+
+.footer-section li {
+  margin-bottom: var(--space-2);
+  color: #cde0f2;
+}
+
+.social-links {
+  margin-top: var(--space-3);
+  display: flex;
+  gap: var(--space-3);
+}
+
+.social-links a {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.newsletter input {
+  width: 100%;
+  margin: 8px 0;
+  padding: 10px 12px;
+  border: 1px solid #bbccdd;
+  border-radius: var(--radius-sm);
+}
+
+.newsletter button {
+  border: 0;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--color-secondary);
+  color: #17324b;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* ===== Page-specific components (migrated from legacy styles) ===== */
+
+/* Admission page -------------------------------------------------- */
+.admission-page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: var(--space-6);
+}
+
+/* Syllabus page -------------------------------------------------- */
+.syllabus-section {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: var(--space-6);
+}
+
+.syllabus-intro,
+.syllabus-notes {
+  background-color: var(--color-surface);
+  padding: var(--space-5);
+  border-radius: var(--radius-md);
+  margin: var(--space-5) 0;
+}
+
+.syllabus-controls {
+  margin: var(--space-5) 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.class-selector {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.class-selector label {
+  font-weight: 700;
+}
+
+.class-selector select {
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+}
+
+.select-message {
+  text-align: center;
+  padding: var(--space-7);
+  background-color: var(--color-surface);
+  border-radius: var(--radius-md);
+}
+
+.Syllabusaccordion {
+  margin-top: var(--space-5);
+}
+
+.Syllabusaccordion-item {
+  margin-bottom: var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.Syllabusaccordion-header {
+  background-color: var(--color-primary);
+  color: var(--color-surface);
+  padding: var(--space-4);
+  cursor: pointer;
+  position: relative;
+}
+
+.Syllabusaccordion-header::after {
+  content: '+';
+  position: absolute;
+  right: var(--space-4);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.Syllabusaccordion-content {
+  padding: var(--space-4);
+  background-color: var(--color-surface);
+  display: none;
+}
+
+.syllabus-download {
+  margin: var(--space-7) 0;
+  background-color: var(--color-surface);
+  padding: var(--space-5);
+  border-radius: var(--radius-md);
+}
+
+.syllabus-download h3 {
+  margin-bottom: var(--space-4);
+  color: var(--color-primary);
+}
+
+.download-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: var(--space-4);
+}
+
+.download-link {
+  display: flex;
+  align-items: center;
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-primary);
+  color: var(--color-surface);
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  transition: background-color var(--transition-fast);
+}
+
+.download-link:hover {
+  background-color: var(--color-primary-700);
+}
+
+.download-link i {
+  margin-right: var(--space-2);
+}
+
+.admission-banner {
+  background: linear-gradient(rgba(36,72,85,0.8), rgba(36,72,85,0.8)),
+              url('../images/Gallery/event1.jpg') center/cover no-repeat;
+  color: var(--color-surface);
+  padding: var(--space-7) var(--space-6);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-6);
+  text-align: center;
+}
+
+.banner-content h3 {
+  font-size: var(--text-2xl);
+  margin-bottom: var(--space-3);
+}
+
+.banner-content p {
+  font-size: var(--text-md);
+  margin-bottom: var(--space-4);
+}
+
+.banner-btn {
+  display: inline-block;
+  padding: var(--space-3) var(--space-6);
+  background-color: var(--color-secondary);
+  color: var(--color-text);
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.banner-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* cards used across admission sub‑sections */
+.admission-intro,
+.admission-process,
+.admission-requirements,
+.age-criteria,
+.fee-structure-summary,
+.admission-form,
+.admission-faq,
+.contact-details {
+  background: var(--color-surface);
+  padding: var(--space-5);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: var(--space-6);
+}
+
+.admission-process h3,
+.admission-requirements h3,
+.age-criteria h3,
+.fee-structure-summary h3,
+.admission-form h3,
+.admission-faq h3,
+.contact-details h3 {
+  color: var(--color-primary);
+  margin-bottom: var(--space-4);
+  text-align: center;
+}
+
+.process-steps {
+  margin-top: var(--space-6);
+}
+
+.process-step {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: var(--space-5);
+  position: relative;
+}
+
+.process-step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 40px;
+  left: 20px;
+  height: calc(100% - 20px);
+  width: 2px;
+  background-color: var(--color-primary);
+}
+
+.step-number {
+  background-color: var(--color-primary);
+  color: var(--color-surface);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: var(--text-lg);
+  margin-right: var(--space-4);
+  z-index: 1;
+}
+
+.step-content h4 {
+  color: var(--color-primary);
+  margin-bottom: var(--space-2);
+}
+
+.requirements-grid,
+.fee-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+}
+
+.requirement-item,
+.fee-category {
+  background: #f8f9fa;
+  padding: var(--space-5);
+  border-radius: var(--radius-sm);
+  text-align: center;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.requirement-item:hover,
+.fee-category:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-sm);
+}
+
+.requirement-item i {
+  font-size: 1.8rem;
+  color: var(--color-primary);
+  margin-bottom: var(--space-3);
+}
+
+.requirement-item h4,
+.fee-category h4 {
+  color: var(--color-primary);
+  margin-bottom: var(--space-2);
+}
+
+.fee-range {
+  font-weight: 700;
+  margin-top: var(--space-2);
+  color: var(--color-primary);
+}
+
+.fee-note {
+  font-style: italic;
+  margin-top: var(--space-4);
+}
+
+.age-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: var(--space-4);
+}
+
+.age-table th,
+.age-table td {
+  padding: var(--space-3) var(--space-4);
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+.age-table th {
+  background-color: var(--color-primary);
+  color: var(--color-surface);
+}
+
+.age-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}

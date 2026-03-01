@@ -1,0 +1,28 @@
+[2026-02-27 03:12:20] [info] Admin logged in: admin@example.com
+[2026-02-27 03:14:15] [info] Faculty added: TEST FACULTY
+[2026-02-27 03:16:04] [info] Admin logged out: admin@example.com
+[2026-02-27 03:17:37] [warning] Failed login attempt for email: aks01240@gmail.com
+[2026-02-27 03:17:50] [info] Admin logged in: admin@example.com
+[2026-02-27 03:35:57] [info] Faculty deleted: TEST FACULTY
+[2026-02-27 04:10:27] [info] File uploaded: 1772145627_AMIT_PHOTO.jpeg
+[2026-02-27 04:14:40] [info] Financial document added: annual report
+[2026-02-27 04:23:57] [info] Financial document updated: annual report
+[2026-02-27 13:28:54] [info] Admin logged out: admin@example.com
+[2026-02-27 13:29:12] [info] Admin logged in: admin@example.com
+[2026-02-27 14:58:51] [info] Admin logged out: admin@example.com
+[2026-02-27 15:30:28] [info] Admin logged in: admin@example.com
+[2026-02-27 15:34:53] [info] Admin logged out: admin@example.com
+[2026-02-27 15:36:30] [info] Admin logged in: admin@example.com
+[2026-02-27 18:34:13] [info] Admin logged out: admin@example.com
+[2026-02-27 18:34:23] [info] Admin logged in: admin@example.com
+[2026-02-27 18:56:16] [info] Admin logged in: admin@example.com
+[2026-02-27 20:14:21] [info] Admin logged in: admin@example.com
+[2026-02-27 21:45:22] [info] Admin logged out: admin@example.com
+[2026-02-27 21:45:53] [info] Admin logged in: admin@example.com
+[2026-02-27 23:06:44] [info] Admin logged out: admin@example.com
+[2026-02-27 23:07:06] [info] Admin logged in: admin@example.com
+[2026-02-27 23:09:04] [info] Financial document added: annual report
+[2026-02-27 23:52:13] [info] Admin logged out: admin@example.com
+[2026-02-28 21:46:14] [info] Admin logged in: admin@example.com
+[2026-02-28 23:19:29] [info] Admin logged in: admin@example.com
+[2026-02-28 23:20:55] [info] Admin logged out: admin@example.com

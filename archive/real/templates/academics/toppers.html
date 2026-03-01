@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}SHRI SIDDHI VINAYAK EDUCATIONAL TRUST TIBBI - Toppers{% endblock %}
+
+{% block content %}
+<div class="mid">
+    <div class="indexmid">
+        <h2>Our Toppers</h2>
+        
+        <!-- Session Selection Buttons -->
+        <div class="sessions-container" id="sessionsContainer">
+            {% if years %}
+                {% for year in years %}
+                    <button class="session-button {% if year == selected_year %}active{% endif %}" data-year="{{ year }}">Session {{ year }}</button>
+                {% endfor %}
+            {% else %}
+                <p>No toppers data available.</p>
+            {% endif %}
+        </div>
+        
+        <!-- Toppers Container -->
+        <div id="toppersContainer">
+            {% if toppers %}
+                {% for topper in toppers %}
+                    <div class="toppers-card">
+                        <img src="{{ topper.image_path }}" 
+                             onerror="this.src='{{ url_for('static', filename='images/default_profile.png') }}'" 
+                             alt="{{ topper.name }}"
+                             class="toppers-image">
+                        <h4>{{ topper.name }}</h4>
+                        <p>Class: {{ topper.class_name }}</p>
+                        <p>Rank: {{ topper.rank }}</p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No toppers available for this year.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Add click event to session buttons
+        const sessionButtons = document.querySelectorAll('.session-button');
+        sessionButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Update UI
+                sessionButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Navigate to same page with year parameter
+                window.location.href = "{{ url_for('toppers') }}?year=" + this.dataset.year;
+            });
+        });
+    });
+</script>
+{% endblock %}

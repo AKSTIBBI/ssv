@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+
+<body>
+    <div class="full">
+        <div id="header"></div>
+        <!-- Header will load here -->
+        <!-- Main content area -->
+        <div class="mid">
+        <form class="form" action="">
+            <h2 class="toptext-2">Admission Form </h2>
+            <fieldset class="enquiry">
+                <legend>Enquiry</legend>
+                <div class="formleft">
+                    Name : <input type="text" name="name" id="" placeholder="Enter Name..." required=""><br><br>
+                    DOB : <input type="date" name="dob" id="" required=""><br><br>
+                    State : <select name="" id="" required="">
+                        <option value="">Select State</option>
+                        <option value="">Gujrat</option>
+                        <option value="">Haryana</option>
+                        <option value="">Himachal Pradesh</option>
+                        <option value="">Madhya Pradesh</option>
+                        <option value="">Punjab</option>
+                        <option value="">Rajasthan</option>
+                        <option value="">Uttar Pradesh</option>
+                    </select><br><br>
+                    District : <select name="" id="" required="">
+                        <option value="">Select District</option>
+                        <option value="">Barmer</option>
+                        <option value="">Bikaner</option>
+                        <option value="">Hanumangarh</option>
+                        <option value="">Jaipur</option>
+                        <option value="">Jaisalmer</option>
+                        <option value="">Jodhpur</option>
+                        <option value="">Sriganganagar</option>
+                    </select><br><br>
+                    Choose Photo :
+                    <input type="file" name="photo" id="" required="">
+                </div>
+                <div class="formright">
+                    Father's Name : <input type="text" name="name" id="" required=""><br><br>
+                    Mother's Name : <input type="text" name="name" id="" required=""><br><br>
+                    Gender : <input type="radio" name="Gender" value="M" required="" id=""> Male
+                    <input type="radio" name="Gender" value="F" required="" id=""> Female
+                    <input type="radio" name="Gender" value="O" required="" id=""> Other <br><br>
+                    Languages You Know :
+                    <input type="checkbox" name="language[]" id=""> Hindi
+                    <input type="checkbox" name="language[]" id=""> English
+                    <input type="checkbox" name="language[]" id=""> Punjabi
+                    <input type="checkbox" name="language[]" id=""> Marathi
+                    <br><br>
+            </fieldset>
+            <br>
+            <fieldset>
+                <legend>Contact Details</legend>
+                Mobile No. : <input type="number" name="mobno" id="" required="" maxlength="10">
+                Email-Id : <input type="email" name="email" id="" required="">
+            </fieldset>
+            <br>
+            <div class="btn">
+            <button type="submit">Submit</button>
+            <button type="reset">Reset</button>
+        </div>
+    </form>
+    </div>
+    <div id="footer"></div> <!-- Footer will load here -->
+</div>
+<!-- Link to the external JavaScript file -->
+<script src="script.js"></script>
+</body>
+
+</html>

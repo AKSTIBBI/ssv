@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "full_name": "AJAY KUMAR SHARMA",
+        "email": "aks01240@gmail.com",
+        "phone": "9509655817",
+        "position": "Computer Science Teacher",
+        "qualification": "BCA",
+        "experience": "5",
+        "cover_letter": "Having work exp 5 years",
+        "other_position": "",
+        "references": "amit kumar",
+        "resume_link": "https://drive.google.com/resume",
+        "resume_file": "",
+        "submission_date": "2026-02-27 18:36:24",
+        "ip_address": "::1",
+        "status": "new",
+        "notes": ""
+    },
+    {
+        "id": 2,
+        "full_name": "komal Sharma",
+        "email": "komalsharma01240@gmail.com",
+        "phone": "9024992163",
+        "position": "English Language Teacher",
+        "qualification": "BED",
+        "experience": "3",
+        "cover_letter": "OK",
+        "other_position": "",
+        "references": "",
+        "resume_link": "",
+        "resume_file": "C:/xampp/htdocs/Project_SSV_Website/real/uploads/careers/1772295253_rte.pdf",
+        "submission_date": "2026-02-28 21:44:13",
+        "ip_address": "::1",
+        "status": "new",
+        "notes": ""
+    }
+]

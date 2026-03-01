@@ -1,0 +1,351 @@
+{% extends "admin/base.html" %}
+
+{% block content %}
+<div class="admin-container">
+    <h2>{{ title }}</h2>
+    
+    <div class="admin-nav">
+        <a href="{{ url_for('admin') }}" class="admin-nav-link">
+            <i class="fas fa-tachometer-alt"></i> Dashboard
+        </a>
+        <a href="{{ url_for('admin_notices') }}" class="admin-nav-link">
+            <i class="fas fa-bullhorn"></i> Notices
+        </a>
+        <a href="{{ url_for('admin_faculties') }}" class="admin-nav-link active">
+            <i class="fas fa-users"></i> Faculties
+        </a>
+        <a href="{{ url_for('admin_fees') }}" class="admin-nav-link">
+            <i class="fas fa-money-bill-wave"></i> Fees
+        </a>
+        <a href="{{ url_for('admin_financials') }}" class="admin-nav-link">
+            <i class="fas fa-file-invoice-dollar"></i> Financials
+        </a>
+        <a href="{{ url_for('admin_uploads') }}" class="admin-nav-link">
+            <i class="fas fa-upload"></i> Uploads
+        </a>
+    </div>
+    
+    <div class="admin-content">
+        {% include 'includes/flash_messages.html' %}
+        
+        {% if form %}
+            <div class="content-section">
+                <div class="section-header">
+                    <h3>{{ 'Edit Faculty' if edit else 'Add New Faculty' }}</h3>
+                </div>
+                <div class="section-body">
+                    <form method="POST" class="admin-form">
+                        {{ form.hidden_tag() }}
+                        
+                        <div class="form-group">
+                            {{ form.name.label(class="form-label") }}
+                            {{ form.name(class="form-control", placeholder="Enter faculty name") }}
+                            {% for error in form.name.errors %}
+                                <span class="error-message">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        
+                        <div class="form-group">
+                            {{ form.title.label(class="form-label") }}
+                            {{ form.title(class="form-control", placeholder="Enter title/designation") }}
+                            {% for error in form.title.errors %}
+                                <span class="error-message">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        
+                        <div class="form-group">
+                            {{ form.image_path.label(class="form-label") }}
+                            {{ form.image_path(class="form-control", placeholder="Enter image path") }}
+                            <small class="form-text text-muted">Upload image in the Uploads section first, then copy its path here.</small>
+                            {% for error in form.image_path.errors %}
+                                <span class="error-message">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        
+                        <div class="form-actions">
+                            {{ form.submit(class="btn-primary") }}
+                            <a href="{{ url_for('admin_faculties') }}" class="btn-secondary">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        {% else %}
+            <div class="content-section">
+                <div class="section-header">
+                    <h3>Faculty List</h3>
+                    <a href="{{ url_for('add_faculty') }}" class="btn-primary">
+                        <i class="fas fa-plus"></i> Add Faculty
+                    </a>
+                </div>
+                <div class="section-body">
+                    {% if faculties %}
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Title</th>
+                                    <th>Image</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for faculty in faculties %}
+                                    <tr>
+                                        <td>{{ faculty.name }}</td>
+                                        <td>{{ faculty.title }}</td>
+                                        <td>
+                                            {% if faculty.image_path %}
+                                                <img src="{{ url_for('static', filename=faculty.image_path) }}" alt="{{ faculty.name }}" class="preview-image">
+                                            {% else %}
+                                                <span class="no-image">No image</span>
+                                            {% endif %}
+                                        </td>
+                                        <td class="action-cell">
+                                            <a href="{{ url_for('edit_faculty', id=faculty.id) }}" class="action-btn edit-btn" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <a href="{{ url_for('delete_faculty', id=faculty.id) }}" class="action-btn delete-btn" title="Delete" onclick="return confirm('Are you sure you want to delete this faculty member?')">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    {% else %}
+                        <p class="no-data-message">No faculty members added yet.</p>
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .admin-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    
+    .admin-container h2 {
+        color: #244855;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    
+    .admin-nav {
+        display: flex;
+        background-color: white;
+        border-radius: 8px;
+        overflow: hidden;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .admin-nav-link {
+        padding: 15px 20px;
+        color: #244855;
+        text-decoration: none;
+        text-align: center;
+        flex: 1;
+        border-right: 1px solid #eee;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .admin-nav-link i {
+        margin-right: 8px;
+    }
+    
+    .admin-nav-link:last-child {
+        border-right: none;
+    }
+    
+    .admin-nav-link:hover {
+        background-color: #f8f9fa;
+    }
+    
+    .admin-nav-link.active {
+        background-color: #244855;
+        color: white;
+    }
+    
+    .admin-content {
+        background-color: white;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .section-header h3 {
+        color: #244855;
+        margin: 0;
+    }
+    
+    .admin-form {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+    }
+    
+    .form-label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 500;
+        color: #244855;
+    }
+    
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-family: inherit;
+        font-size: 1rem;
+    }
+    
+    textarea.form-control {
+        min-height: 120px;
+    }
+    
+    .error-message {
+        color: #d9534f;
+        font-size: 0.875rem;
+        margin-top: 5px;
+        display: block;
+    }
+    
+    .form-text {
+        font-size: 0.875rem;
+        color: #6c757d;
+        margin-top: 5px;
+    }
+    
+    .form-actions {
+        display: flex;
+        justify-content: flex-start;
+        gap: 10px;
+        margin-top: 30px;
+    }
+    
+    .btn-primary, .btn-secondary {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .btn-primary {
+        background-color: #244855;
+        color: white;
+    }
+    
+    .btn-primary:hover {
+        background-color: #1c3a44;
+    }
+    
+    .btn-secondary {
+        background-color: #6c757d;
+        color: white;
+    }
+    
+    .btn-secondary:hover {
+        background-color: #5a6268;
+    }
+    
+    .data-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    
+    .data-table th, .data-table td {
+        padding: 12px 15px;
+        border-bottom: 1px solid #eee;
+        text-align: left;
+    }
+    
+    .data-table th {
+        background-color: #f8f9fa;
+        font-weight: 600;
+        color: #244855;
+    }
+    
+    .data-table tr:hover {
+        background-color: #f8f9fa;
+    }
+    
+    .action-cell {
+        white-space: nowrap;
+    }
+    
+    .action-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        border-radius: 4px;
+        color: white;
+        margin-right: 5px;
+        transition: all 0.3s ease;
+    }
+    
+    .edit-btn {
+        background-color: #4bb1cf;
+    }
+    
+    .edit-btn:hover {
+        background-color: #3a8fa9;
+    }
+    
+    .delete-btn {
+        background-color: #d9534f;
+    }
+    
+    .delete-btn:hover {
+        background-color: #c9302c;
+    }
+    
+    .no-data-message {
+        text-align: center;
+        padding: 30px;
+        color: #6c757d;
+        font-style: italic;
+    }
+    
+    .preview-image {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 4px;
+    }
+    
+    .no-image {
+        font-style: italic;
+        color: #6c757d;
+    }
+</style>
+{% endblock %}

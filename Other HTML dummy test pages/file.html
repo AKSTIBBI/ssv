@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SchoolPro Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .login-container {
+            text-align: center;
+        }
+        .login-box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px gray;
+        }
+        .inputtextbox {
+            display: block;
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+        }
+        button {
+            padding: 8px 15px;
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        let generatedOTP;
+        
+        function sendOTP() {
+            const mobileNumber = document.getElementById('mobno').value;
+            if (mobileNumber.length !== 10 || isNaN(mobileNumber)) {
+                alert("Please enter a valid 10-digit mobile number.");
+                return;
+            }
+            
+            generatedOTP = Math.floor(100000 + Math.random() * 900000); // Generate 6-digit OTP
+            alert("Your OTP is: " + generatedOTP); // Simulating OTP send (replace with real API call)
+            document.getElementById('hideotp').style.display = 'block';
+        }
+        
+        function validateOTP(event) {
+            const enteredOTP = document.getElementById('otp').value;
+            if (enteredOTP != generatedOTP) {
+                alert("Invalid OTP! Please try again.");
+                event.preventDefault(); // Prevent form submission
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <h2>SchoolPro_Login</h2>
+            <form action="/index.html" method="get" onsubmit="validateOTP(event)">
+                <label for="mobno">Mobile No : </label>
+                <input type="text" id="mobno" name="mobno" minlength="10" maxlength="10" class="inputtextbox">
+                <button type="button" onclick="sendOTP()">Send OTP</button>
+                <section id="hideotp" style="display: none;">
+                    <label for="otp">Enter OTP : </label>
+                    <input type="password" name="otp" id="otp" class="inputtextbox">
+                    <button type="submit">Submit</button>
+                </section>
+                <button type="reset">Reset</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

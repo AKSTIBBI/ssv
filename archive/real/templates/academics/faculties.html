@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}SHRI SIDDHI VINAYAK EDUCATIONAL TRUST TIBBI - Faculties{% endblock %}
+
+{% block content %}
+<div class="mid">
+    <div class="indexmid">
+        <h2>Our Faculties</h2>
+        
+        <div id="facultyContainer">
+            {% if faculties %}
+                {% for faculty in faculties %}
+                    <div class="faculty-card">
+                        <img src="" alt="" onerror="">
+                        <h3>{{ faculty.name }}</h3>
+                        <p>{{ faculty.title }}</p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No faculty information available at this time.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

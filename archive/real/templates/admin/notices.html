@@ -1,0 +1,405 @@
+{% extends 'base.html' %}
+
+{% block title %}SHRI SIDDHI VINAYAK EDUCATIONAL TRUST TIBBI - Admin Notices{% endblock %}
+
+{% block content %}
+<div class="mid">
+    <div class="admin-container">
+        <h2>{{ 'Edit Notice' if edit else 'Add Notice' if form and not edit else 'Notice Board Management' }}</h2>
+        
+        <div class="admin-nav">
+            <a href="{{ url_for('admin') }}" class="admin-nav-link">
+                <i class="fas fa-home"></i> Dashboard
+            </a>
+            <a href="{{ url_for('admin_uploads') }}" class="admin-nav-link">
+                <i class="fas fa-upload"></i> Uploads
+            </a>
+            <a href="{{ url_for('admin_notices') }}" class="admin-nav-link active">
+                <i class="fas fa-bell"></i> Notices
+            </a>
+            <a href="{{ url_for('admin_faculties') }}" class="admin-nav-link">
+                <i class="fas fa-user-tie"></i> Faculties
+            </a>
+            <a href="{{ url_for('admin_fees') }}" class="admin-nav-link">
+                <i class="fas fa-money-bill-wave"></i> Fees
+            </a>
+            <a href="{{ url_for('admin_financials') }}" class="admin-nav-link">
+                <i class="fas fa-file-invoice-dollar"></i> Financials
+            </a>
+        </div>
+        
+        <div class="admin-content">
+            {% if form %}
+                <form method="POST" class="admin-form">
+                    {{ form.hidden_tag() }}
+                    
+                    <div class="form-group">
+                        {{ form.title.label }}
+                        {{ form.title(class="form-control", required=true) }}
+                        {% for error in form.title.errors %}
+                            <span class="form-error">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    
+                    <div class="form-group">
+                        {{ form.description.label }}
+                        {{ form.description(class="form-control", rows=5, required=true) }}
+                        {% for error in form.description.errors %}
+                            <span class="form-error">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group half">
+                            {{ form.author.label }}
+                            {{ form.author(class="form-control", required=true) }}
+                            {% for error in form.author.errors %}
+                                <span class="form-error">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        
+                        <div class="form-group quarter">
+                            {{ form.date.label }}
+                            {{ form.date(class="form-control", required=true, placeholder="Day (1-31)") }}
+                            {% for error in form.date.errors %}
+                                <span class="form-error">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        
+                        <div class="form-group quarter">
+                            {{ form.month.label }}
+                            {{ form.month(class="form-control", required=true, placeholder="Month (e.g. Jan)") }}
+                            {% for error in form.month.errors %}
+                                <span class="form-error">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        {{ form.publish_date.label }}
+                        {{ form.publish_date(class="form-control", required=true, placeholder="Format: 15-Jan-2025") }}
+                        {% for error in form.publish_date.errors %}
+                            <span class="form-error">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">{{ 'Update Notice' if edit else 'Add Notice' }}</button>
+                        <a href="{{ url_for('admin_notices') }}" class="btn-secondary">Cancel</a>
+                    </div>
+                </form>
+            {% else %}
+                <div class="admin-actions">
+                    <a href="{{ url_for('add_notice') }}" class="btn-primary">
+                        <i class="fas fa-plus"></i> Add New Notice
+                    </a>
+                </div>
+                
+                <div class="admin-table-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Date</th>
+                                <th>Author</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for notice in notices %}
+                                <tr>
+                                    <td>{{ notice.title }}</td>
+                                    <td>{{ notice.date }}-{{ notice.month }}</td>
+                                    <td>{{ notice.author }}</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <a href="{{ url_for('edit_notice', id=notice.id) }}" class="btn-sm btn-edit">
+                                                <i class="fas fa-edit"></i> Edit
+                                            </a>
+                                            <a href="{{ url_for('delete_notice', id=notice.id) }}" class="btn-sm btn-delete" onclick="return confirm('Are you sure you want to delete this notice?');">
+                                                <i class="fas fa-trash"></i> Delete
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="4" class="text-center">No notices found.</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .admin-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    
+    .admin-container h2 {
+        color: #244855;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    
+    .admin-nav {
+        display: flex;
+        background-color: white;
+        border-radius: 8px;
+        overflow: hidden;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .admin-nav-link {
+        padding: 15px 20px;
+        color: #244855;
+        text-decoration: none;
+        text-align: center;
+        flex: 1;
+        border-right: 1px solid #eee;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .admin-nav-link i {
+        margin-right: 8px;
+    }
+    
+    .admin-nav-link:last-child {
+        border-right: none;
+    }
+    
+    .admin-nav-link:hover {
+        background-color: #f8f9fa;
+    }
+    
+    .admin-nav-link.active {
+        background-color: #244855;
+        color: white;
+    }
+    
+    .admin-content {
+        background-color: white;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .admin-actions {
+        margin-bottom: 20px;
+        text-align: right;
+    }
+    
+    .btn-primary {
+        background-color: #244855;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 4px;
+        text-decoration: none;
+        display: inline-block;
+        cursor: pointer;
+        font-weight: bold;
+    }
+    
+    .btn-primary:hover {
+        background-color: #1a3540;
+    }
+    
+    .btn-secondary {
+        background-color: #6c757d;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 4px;
+        text-decoration: none;
+        display: inline-block;
+        margin-left: 10px;
+    }
+    
+    .btn-sm {
+        padding: 5px 10px;
+        font-size: 0.9em;
+    }
+    
+    .btn-edit {
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        text-decoration: none;
+    }
+    
+    .btn-delete {
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        text-decoration: none;
+        margin-left: 5px;
+    }
+    
+    .admin-table-container {
+        overflow-x: auto;
+    }
+    
+    .admin-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    
+    .admin-table th,
+    .admin-table td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .admin-table th {
+        background-color: #f8f9fa;
+        color: #244855;
+        font-weight: bold;
+    }
+    
+    .admin-table tr:hover {
+        background-color: #f8f9fa;
+    }
+    
+    .admin-form {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+    }
+    
+    .form-row {
+        display: flex;
+        flex-wrap: wrap;
+        margin-left: -10px;
+        margin-right: -10px;
+    }
+    
+    .half {
+        flex: 0 0 50%;
+        max-width: 50%;
+        padding: 0 10px;
+    }
+    
+    .quarter {
+        flex: 0 0 25%;
+        max-width: 25%;
+        padding: 0 10px;
+    }
+    
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #244855;
+    }
+    
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+    
+    textarea.form-control {
+        resize: vertical;
+    }
+    
+    .form-error {
+        color: #dc3545;
+        font-size: 0.9em;
+        margin-top: 5px;
+        display: block;
+    }
+    
+    .form-actions {
+        text-align: center;
+        margin-top: 30px;
+    }
+    
+    .text-center {
+        text-align: center;
+    }
+    
+    .action-buttons {
+        display: flex;
+        justify-content: flex-start;
+    }
+    
+    @media (max-width: 768px) {
+        .admin-nav {
+            flex-direction: column;
+        }
+        
+        .admin-nav-link {
+            padding: 10px;
+            border-right: none;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .admin-nav-link:last-child {
+            border-bottom: none;
+        }
+        
+        .form-row {
+            flex-direction: column;
+        }
+        
+        .half, .quarter {
+            flex: 0 0 100%;
+            max-width: 100%;
+            padding: 0;
+        }
+        
+        .admin-table thead {
+            display: none;
+        }
+        
+        .admin-table, .admin-table tbody, .admin-table tr, .admin-table td {
+            display: block;
+            width: 100%;
+        }
+        
+        .admin-table tr {
+            margin-bottom: 15px;
+            border: 1px solid #eee;
+            border-radius: 4px;
+        }
+        
+        .admin-table td {
+            display: flex;
+            padding: 10px;
+            text-align: right;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .admin-table td:before {
+            content: attr(data-label);
+            font-weight: bold;
+            margin-right: auto;
+        }
+        
+        .admin-table td:last-child {
+            border-bottom: none;
+        }
+    }
+</style>
+{% endblock %}

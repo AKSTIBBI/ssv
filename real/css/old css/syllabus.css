@@ -1,0 +1,117 @@
+    .syllabus-section {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    
+    .syllabus-intro, .syllabus-notes {
+        background-color: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+        margin: 20px 0;
+    }
+    
+    .syllabus-controls {
+        margin: 20px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .class-selector {
+        display: flex;
+        align-items: center;
+    }
+    
+    .class-selector label {
+        margin-right: 10px;
+        font-weight: bold;
+    }
+    
+    .class-selector select {
+        padding: 8px 15px;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+    }
+    
+    .select-message {
+        text-align: center;
+        padding: 50px;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+    }
+    
+    .Syllabusaccordion {
+        margin-top: 20px;
+    }
+    
+    .Syllabusaccordion-item {
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    
+    .Syllabusaccordion-header {
+        background-color: #244855;
+        color: white;
+        padding: 15px;
+        cursor: pointer;
+        margin: 0;
+        position: relative;
+    }
+    
+    .Syllabusaccordion-header::after {
+        content: '+';
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .Syllabusaccordion-content {
+        padding: 15px;
+        background-color: white;
+        display: none;
+    }
+    
+    .Syllabusaccordion-content p {
+        margin-bottom: 10px;
+    }
+    
+    .syllabus-download {
+        margin: 30px 0;
+        background-color: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+    }
+    
+    .syllabus-download h3 {
+        margin-bottom: 15px;
+        color: #244855;
+    }
+    
+    .download-links {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 15px;
+    }
+    
+    .download-link {
+        display: flex;
+        align-items: center;
+        padding: 10px 15px;
+        background-color: #244855;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+    }
+    
+    .download-link:hover {
+        background-color: #1a3540;
+    }
+    
+    .download-link i {
+        margin-right: 10px;
+    }

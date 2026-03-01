@@ -1,0 +1,159 @@
+# NOTICES MANAGEMENT - QUICK REFERENCE
+
+## 🚀 Quick Start
+
+### Access
+1. Login to Admin Panel: `admin@example.com` / `admin123`
+2. Click "Notices" in navigation
+3. URL: `/Project_SSV_Website/real/php/admin_notices.php`
+
+## 📝 Add Notice (30 seconds)
+
+```
+Title:       "Event Name" (max 100 chars)
+Description: "Details here" (max 500 chars)
+Author:      "Optional - defaults to your name"
+Date:        "27" (day number)
+Month:       "Feb" (month abbr)
+Publish:     "27-Feb-2026" (full date)
+
+→ Click [Add Notice]
+```
+
+## ✏️ Edit Notice
+
+1. Active Notices tab
+2. Find notice → Click [Edit]
+3. Modal opens with pre-filled data
+4. Make changes
+5. Click [Update Notice]
+
+## 🗑️ Delete Notice
+
+1. Active Notices tab
+2. Click [Delete] for notice
+3. Confirm deletion
+4. Moves to Trash (recoverable)
+
+## 🔄 Restore Notice
+
+1. Trash tab
+2. Click [Restore]
+3. Returns to Active Notices
+
+## 📊 Data Structure
+
+```json
+{
+  "notice_id": "notice_1772137700055",
+  "title": "Holi Holiday",
+  "description": "School closed for Holi.",
+  "author": "Principal",
+  "date": "27",
+  "month": "Feb",
+  "publish_date": "27-Feb-2026",
+  "deleted": false
+}
+```
+
+## 🌐 Website Display
+
+**Location**: Academics → Notice Board
+
+**Content appears as**:
+```
+┌──────────────────────────────────┐
+│  27 │ Holi Holiday              │
+│  ── │ School closed for Holi.   │
+│ Feb │ Author: Principal          │
+│     │ Date: 27-Feb-2026          │
+└──────────────────────────────────┘
+```
+
+## ⚡ Key Features
+
+- ✓ Real-time sync with website
+- ✓ Soft delete (recoverable)
+- ✓ CSRF protection
+- ✓ Input validation
+- ✓ Session auth (1 hour timeout)
+- ✓ Responsive design
+
+## ✅ Validation Rules
+
+| Field | Max | Required | Example |
+|-------|-----|----------|---------|
+| Title | 100 | Yes | "Annual Day 2026" |
+| Description | 500 | Yes | "Event details..." |
+| Author | - | No | "Sports Dept" |
+| Date | 31 | No | "15" |
+| Month | 3 | No | "Mar" |
+
+## 🔒 Security
+
+- CSRF tokens on all forms
+- Input sanitization
+- Admin login required
+- Session timeout: 1 hour
+- XSS prevention
+
+## 📂 Files
+
+```
+real/php/admin_notices.php          Admin interface
+real/php/config.php                 Configuration
+real/php/helpers.php                Utility functions
+real/php/auth.php                   Authentication
+real/json/notices.json              Notice storage
+real/js/script.js                   Website display (lines 1410-1460)
+```
+
+## 🐛 Troubleshooting
+
+| Issue | Solution |
+|-------|----------|
+| Changes not showing | Clear browser cache (Ctrl+Shift+Del) |
+| "Failed to save" | Check file permissions (chmod 755) |
+| Session expired | Login again |
+| Character limit error | Use fewer characters |
+
+## 💡 Pro Tips
+
+1. **Author field**: Leave blank to auto-use your name
+2. **Dates**: Use consistent format (DD-MMM-YYYY)
+3. **Editing**: Use Edit button instead of Delete + Add
+4. **Archive**: Don't permanently delete old notices
+5. **Sync**: Website updates within 1 minute
+
+## 📌 Common Tasks
+
+### Announce Holidays
+```
+Title: "Holiday - [Festival Name]"
+Description: "School closed for [Festival]. 
+Will reopen on [Date]."
+Author: "Principal"
+```
+
+### Sports Day Notice
+```
+Title: "Annual Sports Day 2026"
+Description: "Dates: March 15-17
+Registration deadline: March 10
+Contact: Sports Committee"
+Author: "Sports Committee"
+```
+
+### Parent-Teacher Meeting
+```
+Title: "Parent-Teacher Meeting"
+Description: "Scheduled for [Date] at [Time]
+Venue: School Auditorium
+Please register by [Date]"
+Author: "Administration"
+```
+
+---
+
+**Remember**: Active notices appear on website instantly!
+**Last Updated**: February 27, 2026

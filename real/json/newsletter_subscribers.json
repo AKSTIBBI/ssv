@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "email": "aks01240@gmail.com",
+        "subscribed_date": "2026-02-27 15:36:40",
+        "ip_address": "::1",
+        "status": "active"
+    },
+    {
+        "id": 2,
+        "email": "amitkumars072@gmail.com",
+        "subscribed_date": "2026-02-27 15:36:54",
+        "ip_address": "::1",
+        "status": "active"
+    },
+    {
+        "id": 3,
+        "email": "komalsharma01240@gmail.com",
+        "subscribed_date": "2026-02-28 21:28:49",
+        "ip_address": "::1",
+        "status": "active"
+    }
+]

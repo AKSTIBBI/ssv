@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+
+{% block title %}SHRI SIDDHI VINAYAK EDUCATIONAL TRUST TIBBI - Admin Dashboard{% endblock %}
+
+{% block content %}
+<div class="admin-container">
+    <div class="admin-header">
+        <h2>Admin Dashboard</h2>
+        <div>
+            <a href="{{ url_for('index') }}" class="btn">Back to Website</a>
+        </div>
+    </div>
+    
+    <!-- Alert Container for JavaScript alerts -->
+    <div class="alert-container"></div>
+    
+    <!-- Admin Menu -->
+    <div class="admin-menu">
+        <a href="{{ url_for('admin') }}" class="admin-menu-item active">
+            <i class="fas fa-home"></i> Dashboard
+        </a>
+        <a href="{{ url_for('admin_uploads') }}" class="admin-menu-item">
+            <i class="fas fa-upload"></i> Uploads
+        </a>
+        <a href="{{ url_for('admin_notices') }}" class="admin-menu-item">
+            <i class="fas fa-bell"></i> Notices
+        </a>
+        <a href="{{ url_for('admin_faculties') }}" class="admin-menu-item">
+            <i class="fas fa-user-tie"></i> Faculties
+        </a>
+        <a href="{{ url_for('admin_fees') }}" class="admin-menu-item">
+            <i class="fas fa-money-bill-wave"></i> Fees
+        </a>
+        <a href="{{ url_for('admin_financials') }}" class="admin-menu-item">
+            <i class="fas fa-file-invoice-dollar"></i> Financials
+        </a>
+    </div>
+    
+    <!-- Stats Cards -->
+    <div class="admin-cards">
+        <div class="admin-card">
+            <h3>Notices</h3>
+            <p>{{ notice_count }}</p>
+            <a href="{{ url_for('admin_notices') }}" class="btn btn-sm">Manage</a>
+        </div>
+        <div class="admin-card">
+            <h3>Faculties</h3>
+            <p>{{ faculty_count }}</p>
+            <a href="{{ url_for('admin_faculties') }}" class="btn btn-sm">Manage</a>
+        </div>
+        <div class="admin-card">
+            <h3>Toppers</h3>
+            <p>{{ topper_count }}</p>
+            <a href="#" class="btn btn-sm">Manage</a>
+        </div>
+        <div class="admin-card">
+            <h3>Gallery</h3>
+            <p>{{ gallery_count }}</p>
+            <a href="#" class="btn btn-sm">Manage</a>
+        </div>
+    </div>
+    
+    <!-- Stats Chart -->
+    <div class="chart-container">
+        <canvas id="statsChart"></canvas>
+    </div>
+    
+    <!-- Recent Activities -->
+    <div class="recent-activities">
+        <h3>Recent Activities</h3>
+        <ul class="activity-list">
+            <li>
+                <span class="activity-time">Today, 10:30 AM</span>
+                <span class="activity-text">New notice added: "REPUBLIC DAY CELEBRATION"</span>
+            </li>
+            <li>
+                <span class="activity-time">Yesterday, 3:45 PM</span>
+                <span class="activity-text">Faculty information updated</span>
+            </li>
+            <li>
+                <span class="activity-time">Mar 10, 2023, 9:15 AM</span>
+                <span class="activity-text">New topper added for year 2023</span>
+            </li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/vendor/chart.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .admin-menu {
+        display: flex;
+        flex-wrap: wrap;
+        background-color: #fff;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+    
+    .admin-menu-item {
+        flex: 1;
+        min-width: 120px;
+        padding: 15px 20px;
+        color: #244855;
+        text-decoration: none;
+        text-align: center;
+        border-right: 1px solid #eee;
+        transition: all 0.3s ease;
+    }
+    
+    .admin-menu-item:last-child {
+        border-right: none;
+    }
+    
+    .admin-menu-item i {
+        margin-right: 5px;
+    }
+    
+    .admin-menu-item:hover {
+        background-color: #f8f9fa;
+    }
+    
+    .admin-menu-item.active {
+        background-color: #244855;
+        color: white;
+    }
+    
+    @media (max-width: 768px) {
+        .admin-menu {
+            flex-direction: column;
+        }
+        
+        .admin-menu-item {
+            padding: 10px;
+            border-right: none;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .admin-menu-item:last-child {
+            border-bottom: none;
+        }
+    }
+</style>
+{% endblock %}

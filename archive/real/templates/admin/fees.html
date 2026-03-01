@@ -1,0 +1,344 @@
+{% extends "admin/base.html" %}
+
+{% block content %}
+<div class="admin-container">
+    <h2>{{ title }}</h2>
+    
+    <div class="admin-nav">
+        <a href="{{ url_for('admin') }}" class="admin-nav-link">
+            <i class="fas fa-tachometer-alt"></i> Dashboard
+        </a>
+        <a href="{{ url_for('admin_notices') }}" class="admin-nav-link">
+            <i class="fas fa-bullhorn"></i> Notices
+        </a>
+        <a href="{{ url_for('admin_faculties') }}" class="admin-nav-link">
+            <i class="fas fa-users"></i> Faculties
+        </a>
+        <a href="{{ url_for('admin_fees') }}" class="admin-nav-link active">
+            <i class="fas fa-money-bill-wave"></i> Fees
+        </a>
+        <a href="{{ url_for('admin_financials') }}" class="admin-nav-link">
+            <i class="fas fa-file-invoice-dollar"></i> Financials
+        </a>
+        <a href="{{ url_for('admin_uploads') }}" class="admin-nav-link">
+            <i class="fas fa-upload"></i> Uploads
+        </a>
+    </div>
+    
+    <div class="admin-content">
+        {% include 'includes/flash_messages.html' %}
+        
+        {% if form %}
+            <div class="content-section">
+                <div class="section-header">
+                    <h3>{{ 'Edit Fee Structure' if edit else 'Add New Fee Structure' }}</h3>
+                </div>
+                <div class="section-body">
+                    <form method="POST" class="admin-form">
+                        {{ form.hidden_tag() }}
+                        
+                        <div class="form-group">
+                            {{ form.class_name.label(class="form-label") }}
+                            {{ form.class_name(class="form-control", placeholder="Enter class name (e.g., Class 1, Class 2)") }}
+                            {% for error in form.class_name.errors %}
+                                <span class="error-message">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        
+                        <div class="form-group">
+                            {{ form.admission_fee.label(class="form-label") }}
+                            {{ form.admission_fee(class="form-control", placeholder="Enter admission fee amount", type="number") }}
+                            {% for error in form.admission_fee.errors %}
+                                <span class="error-message">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        
+                        <div class="form-group">
+                            {{ form.development_fee.label(class="form-label") }}
+                            {{ form.development_fee(class="form-control", placeholder="Enter development fee amount", type="number") }}
+                            {% for error in form.development_fee.errors %}
+                                <span class="error-message">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        
+                        <div class="form-group">
+                            {{ form.tuition_fee.label(class="form-label") }}
+                            {{ form.tuition_fee(class="form-control", placeholder="Enter tuition fee amount", type="number") }}
+                            {% for error in form.tuition_fee.errors %}
+                                <span class="error-message">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        
+                        <div class="form-actions">
+                            {{ form.submit(class="btn-primary") }}
+                            <a href="{{ url_for('admin_fees') }}" class="btn-secondary">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        {% else %}
+            <div class="content-section">
+                <div class="section-header">
+                    <h3>Fee Structure List</h3>
+                    <a href="{{ url_for('add_fee') }}" class="btn-primary">
+                        <i class="fas fa-plus"></i> Add Fee Structure
+                    </a>
+                </div>
+                <div class="section-body">
+                    {% if fees %}
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Class</th>
+                                    <th>Admission Fee</th>
+                                    <th>Development Fee</th>
+                                    <th>Tuition Fee</th>
+                                    <th>Total</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for fee in fees %}
+                                    <tr>
+                                        <td>{{ fee.class_name }}</td>
+                                        <td>₹{{ fee.admission_fee }}</td>
+                                        <td>₹{{ fee.development_fee }}</td>
+                                        <td>₹{{ fee.tuition_fee }}</td>
+                                        <td>₹{{ fee.total }}</td>
+                                        <td class="action-cell">
+                                            <a href="{{ url_for('edit_fee', id=fee.id) }}" class="action-btn edit-btn" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <a href="{{ url_for('delete_fee', id=fee.id) }}" class="action-btn delete-btn" title="Delete" onclick="return confirm('Are you sure you want to delete this fee structure?')">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    {% else %}
+                        <p class="no-data-message">No fee structures added yet.</p>
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .admin-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    
+    .admin-container h2 {
+        color: #244855;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    
+    .admin-nav {
+        display: flex;
+        background-color: white;
+        border-radius: 8px;
+        overflow: hidden;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .admin-nav-link {
+        padding: 15px 20px;
+        color: #244855;
+        text-decoration: none;
+        text-align: center;
+        flex: 1;
+        border-right: 1px solid #eee;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .admin-nav-link i {
+        margin-right: 8px;
+    }
+    
+    .admin-nav-link:last-child {
+        border-right: none;
+    }
+    
+    .admin-nav-link:hover {
+        background-color: #f8f9fa;
+    }
+    
+    .admin-nav-link.active {
+        background-color: #244855;
+        color: white;
+    }
+    
+    .admin-content {
+        background-color: white;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .section-header h3 {
+        color: #244855;
+        margin: 0;
+    }
+    
+    .admin-form {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+    }
+    
+    .form-label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 500;
+        color: #244855;
+    }
+    
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-family: inherit;
+        font-size: 1rem;
+    }
+    
+    textarea.form-control {
+        min-height: 120px;
+    }
+    
+    .error-message {
+        color: #d9534f;
+        font-size: 0.875rem;
+        margin-top: 5px;
+        display: block;
+    }
+    
+    .form-text {
+        font-size: 0.875rem;
+        color: #6c757d;
+        margin-top: 5px;
+    }
+    
+    .form-actions {
+        display: flex;
+        justify-content: flex-start;
+        gap: 10px;
+        margin-top: 30px;
+    }
+    
+    .btn-primary, .btn-secondary {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .btn-primary {
+        background-color: #244855;
+        color: white;
+    }
+    
+    .btn-primary:hover {
+        background-color: #1c3a44;
+    }
+    
+    .btn-secondary {
+        background-color: #6c757d;
+        color: white;
+    }
+    
+    .btn-secondary:hover {
+        background-color: #5a6268;
+    }
+    
+    .data-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    
+    .data-table th, .data-table td {
+        padding: 12px 15px;
+        border-bottom: 1px solid #eee;
+        text-align: left;
+    }
+    
+    .data-table th {
+        background-color: #f8f9fa;
+        font-weight: 600;
+        color: #244855;
+    }
+    
+    .data-table tr:hover {
+        background-color: #f8f9fa;
+    }
+    
+    .action-cell {
+        white-space: nowrap;
+    }
+    
+    .action-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        border-radius: 4px;
+        color: white;
+        margin-right: 5px;
+        transition: all 0.3s ease;
+    }
+    
+    .edit-btn {
+        background-color: #4bb1cf;
+    }
+    
+    .edit-btn:hover {
+        background-color: #3a8fa9;
+    }
+    
+    .delete-btn {
+        background-color: #d9534f;
+    }
+    
+    .delete-btn:hover {
+        background-color: #c9302c;
+    }
+    
+    .no-data-message {
+        text-align: center;
+        padding: 30px;
+        color: #6c757d;
+        font-style: italic;
+    }
+</style>
+{% endblock %}

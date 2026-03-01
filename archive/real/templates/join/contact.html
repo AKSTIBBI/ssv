@@ -1,0 +1,236 @@
+{% extends 'base.html' %}
+
+{% block title %}SHRI SIDDHI VINAYAK EDUCATIONAL TRUST TIBBI - Contact Us{% endblock %}
+
+{% block content %}
+<div class="mid">
+    <div class="contact-container">
+        <h2>Contact Us</h2>
+        
+        <div class="contact-info">
+            <div class="contact-card">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>Address</h3>
+                <p>SHRI SIDDHI VINAYAK EDUCATIONAL TRUST TIBBI</p>
+                <p>Village Tibbi, Hanumangarh</p>
+                <p>Rajasthan - 335526</p>
+            </div>
+            
+            <div class="contact-card">
+                <i class="fas fa-phone-alt"></i>
+                <h3>Phone</h3>
+                <p>Main Office: +91-9876543210</p>
+                <p>Admission Cell: +91-9876543211</p>
+                <p>Principal: +91-9876543212</p>
+            </div>
+            
+            <div class="contact-card">
+                <i class="fas fa-envelope"></i>
+                <h3>Email</h3>
+                <p>info@ssveducational.org</p>
+                <p>admissions@ssveducational.org</p>
+                <p>principal@ssveducational.org</p>
+            </div>
+        </div>
+        
+        <div class="contact-form-container">
+            <h3>Send us a Message</h3>
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Your Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Your Phone</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <button type="submit" class="btn-primary">Send Message</button>
+                </div>
+            </form>
+        </div>
+        
+        <div class="map-container">
+            <h3>Find Us on Map</h3>
+            <div class="map-placeholder">
+                <img src="{{ url_for('static', filename='images/map-placeholder.jpg') }}" alt="Map placeholder">
+                <p>Interactive map will be displayed here</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .contact-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    
+    .contact-container h2 {
+        color: #244855;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    
+    .contact-info {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-bottom: 40px;
+    }
+    
+    .contact-card {
+        flex: 1;
+        min-width: 250px;
+        margin: 10px;
+        padding: 20px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+    
+    .contact-card i {
+        font-size: 32px;
+        color: #244855;
+        margin-bottom: 15px;
+    }
+    
+    .contact-card h3 {
+        color: #244855;
+        margin-bottom: 15px;
+    }
+    
+    .contact-card p {
+        color: #666;
+        margin-bottom: 8px;
+    }
+    
+    .contact-form-container {
+        background-color: white;
+        border-radius: 8px;
+        padding: 30px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 40px;
+    }
+    
+    .contact-form-container h3 {
+        color: #244855;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    
+    .contact-form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+    
+    .form-group:nth-last-child(2),
+    .form-group:last-child {
+        grid-column: span 2;
+    }
+    
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #244855;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+    
+    .form-group textarea {
+        resize: vertical;
+    }
+    
+    .btn-primary {
+        background-color: #244855;
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+        display: block;
+        margin: 0 auto;
+        transition: background-color 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+        background-color: #1a3540;
+    }
+    
+    .map-container {
+        background-color: white;
+        border-radius: 8px;
+        padding: 30px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .map-container h3 {
+        color: #244855;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    
+    .map-placeholder {
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        padding: 20px;
+        text-align: center;
+    }
+    
+    .map-placeholder img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 4px;
+        margin-bottom: 15px;
+    }
+    
+    .map-placeholder p {
+        color: #666;
+    }
+    
+    @media (max-width: 768px) {
+        .contact-info {
+            flex-direction: column;
+        }
+        
+        .contact-form {
+            grid-template-columns: 1fr;
+        }
+        
+        .form-group:nth-last-child(2) {
+            grid-column: span 1;
+        }
+    }
+</style>
+{% endblock %}

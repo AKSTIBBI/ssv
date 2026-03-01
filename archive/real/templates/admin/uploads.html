@@ -1,0 +1,578 @@
+{% extends 'base.html' %}
+
+{% block title %}SHRI SIDDHI VINAYAK EDUCATIONAL TRUST TIBBI - Admin Uploads{% endblock %}
+
+{% block content %}
+<div class="mid">
+    <div class="admin-container">
+        <h2>File Upload Manager</h2>
+        
+        <div class="admin-nav">
+            <a href="{{ url_for('admin') }}" class="admin-nav-link">
+                <i class="fas fa-home"></i> Dashboard
+            </a>
+            <a href="{{ url_for('admin_uploads') }}" class="admin-nav-link active">
+                <i class="fas fa-upload"></i> Uploads
+            </a>
+            <a href="{{ url_for('admin_notices') }}" class="admin-nav-link">
+                <i class="fas fa-bell"></i> Notices
+            </a>
+            <a href="{{ url_for('admin_faculties') }}" class="admin-nav-link">
+                <i class="fas fa-user-tie"></i> Faculties
+            </a>
+            <a href="{{ url_for('admin_fees') }}" class="admin-nav-link">
+                <i class="fas fa-money-bill-wave"></i> Fees
+            </a>
+            <a href="{{ url_for('admin_financials') }}" class="admin-nav-link">
+                <i class="fas fa-file-invoice-dollar"></i> Financials
+            </a>
+        </div>
+        
+        <div class="admin-content">
+            <div class="upload-section">
+                <div class="upload-tabs">
+                    <button class="upload-tab active" data-target="image-upload">Image Upload</button>
+                    <button class="upload-tab" data-target="document-upload">Document Upload</button>
+                    <button class="upload-tab" data-target="uploaded-files">Uploaded Files</button>
+                </div>
+                
+                <div class="upload-content">
+                    <!-- Image Upload Tab -->
+                    <div class="upload-tab-content active" id="image-upload">
+                        <h3>Upload Images</h3>
+                        <p>Upload images for use on the website. Accepted formats: PNG, JPG, JPEG, GIF, SVG</p>
+                        
+                        <form action="{{ url_for('upload_image') }}" method="POST" enctype="multipart/form-data" class="upload-form">
+                            {{ form.hidden_tag() if form }}
+                            <div class="form-group">
+                                <label for="image_file">Select Image</label>
+                                <input type="file" id="image_file" name="image_file" accept=".png,.jpg,.jpeg,.gif,.svg" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="image_description">Description (Optional)</label>
+                                <input type="text" id="image_description" name="image_description" placeholder="Brief description of the image">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="image_category">Category</label>
+                                <select id="image_category" name="image_category">
+                                    <option value="general">General</option>
+                                    <option value="logo">School Logo</option>
+                                    <option value="faculty">Faculty</option>
+                                    <option value="student">Student</option>
+                                    <option value="event">Event</option>
+                                    <option value="campus">Campus</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="submit" class="btn-primary">Upload Image</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Document Upload Tab -->
+                    <div class="upload-tab-content" id="document-upload">
+                        <h3>Upload Documents</h3>
+                        <p>Upload documents for use on the website. Accepted formats: PDF, DOC, DOCX, XLS, XLSX, PPT, PPTX, TXT</p>
+                        
+                        <form action="{{ url_for('upload_document') }}" method="POST" enctype="multipart/form-data" class="upload-form">
+                            {{ form.hidden_tag() if form }}
+                            <div class="form-group">
+                                <label for="document_file">Select Document</label>
+                                <input type="file" id="document_file" name="document_file" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="document_title">Title</label>
+                                <input type="text" id="document_title" name="document_title" placeholder="Document title" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="document_category">Category</label>
+                                <select id="document_category" name="document_category">
+                                    <option value="general">General</option>
+                                    <option value="syllabus">Syllabus</option>
+                                    <option value="timetable">Timetable</option>
+                                    <option value="notice">Notice</option>
+                                    <option value="financial">Financial</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="submit" class="btn-primary">Upload Document</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Uploaded Files Tab -->
+                    <div class="upload-tab-content" id="uploaded-files">
+                        <h3>Uploaded Files</h3>
+                        
+                        <!-- Images Section -->
+                        <div class="uploaded-section">
+                            <h4>Images</h4>
+                            
+                            <div class="uploaded-files-grid">
+                                {% if images %}
+                                    {% for image in images %}
+                                        <div class="uploaded-file-card">
+                                            <div class="file-preview">
+                                                <img src="{{ url_for('static', filename=image.file_path) }}" alt="{{ image.description }}">
+                                            </div>
+                                            <div class="file-info">
+                                                <p>{{ image.description or 'No description' }}</p>
+                                                <p class="file-meta">Category: {{ image.category }}</p>
+                                                <p class="file-meta">Uploaded: {{ image.created_at.strftime('%d-%b-%Y') }}</p>
+                                            </div>
+                                            <div class="file-actions">
+                                                <a href="{{ url_for('static', filename=image.file_path) }}" target="_blank" class="file-action-btn view-btn">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                <button class="file-action-btn copy-btn" data-path="{{ url_for('static', filename=image.file_path, _external=True) }}">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                                <a href="{{ url_for('delete_upload', id=image.id) }}" class="file-action-btn delete-btn" onclick="return confirm('Are you sure you want to delete this file?');">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                {% else %}
+                                    <p class="no-files-message">No images uploaded yet.</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+                        <!-- Documents Section -->
+                        <div class="uploaded-section">
+                            <h4>Documents</h4>
+                            
+                            <div class="uploaded-files-list">
+                                {% if documents %}
+                                    <table class="files-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Title</th>
+                                                <th>Category</th>
+                                                <th>Upload Date</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for doc in documents %}
+                                                <tr>
+                                                    <td>{{ doc.title }}</td>
+                                                    <td>{{ doc.category }}</td>
+                                                    <td>{{ doc.created_at.strftime('%d-%b-%Y') }}</td>
+                                                    <td class="action-cell">
+                                                        <a href="{{ url_for('static', filename=doc.file_path) }}" target="_blank" class="file-action-btn view-btn">
+                                                            <i class="fas fa-eye"></i>
+                                                        </a>
+                                                        <button class="file-action-btn copy-btn" data-path="{{ url_for('static', filename=doc.file_path, _external=True) }}">
+                                                            <i class="fas fa-copy"></i>
+                                                        </button>
+                                                        <a href="{{ url_for('delete_upload', id=doc.id) }}" class="file-action-btn delete-btn" onclick="return confirm('Are you sure you want to delete this file?');">
+                                                            <i class="fas fa-trash"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                {% else %}
+                                    <p class="no-files-message">No documents uploaded yet.</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Tab switching functionality
+        const tabs = document.querySelectorAll('.upload-tab');
+        const tabContents = document.querySelectorAll('.upload-tab-content');
+        
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                const target = this.getAttribute('data-target');
+                
+                // Remove active class from all tabs and contents
+                tabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                
+                // Add active class to current tab and content
+                this.classList.add('active');
+                document.getElementById(target).classList.add('active');
+            });
+        });
+        
+        // Copy URL functionality
+        const copyButtons = document.querySelectorAll('.copy-btn');
+        
+        copyButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const path = this.getAttribute('data-path');
+                navigator.clipboard.writeText(path).then(() => {
+                    // Show temporary success message
+                    const originalHTML = this.innerHTML;
+                    this.innerHTML = '<i class="fas fa-check"></i>';
+                    this.classList.add('copied');
+                    
+                    setTimeout(() => {
+                        this.innerHTML = originalHTML;
+                        this.classList.remove('copied');
+                    }, 2000);
+                });
+            });
+        });
+    });
+</script>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .admin-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    
+    .admin-container h2 {
+        color: #244855;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    
+    .admin-nav {
+        display: flex;
+        background-color: white;
+        border-radius: 8px;
+        overflow: hidden;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .admin-nav-link {
+        padding: 15px 20px;
+        color: #244855;
+        text-decoration: none;
+        text-align: center;
+        flex: 1;
+        border-right: 1px solid #eee;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .admin-nav-link i {
+        margin-right: 8px;
+    }
+    
+    .admin-nav-link:last-child {
+        border-right: none;
+    }
+    
+    .admin-nav-link:hover {
+        background-color: #f8f9fa;
+    }
+    
+    .admin-nav-link.active {
+        background-color: #244855;
+        color: white;
+    }
+    
+    .admin-content {
+        background-color: white;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Upload Tabs Styles */
+    .upload-tabs {
+        display: flex;
+        border-bottom: 1px solid #ddd;
+        margin-bottom: 20px;
+    }
+    
+    .upload-tab {
+        padding: 12px 20px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+        color: #666;
+        position: relative;
+        transition: all 0.3s ease;
+    }
+    
+    .upload-tab.active {
+        color: #244855;
+    }
+    
+    .upload-tab.active::after {
+        content: '';
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background-color: #244855;
+    }
+    
+    .upload-tab:hover {
+        background-color: #f8f9fa;
+    }
+    
+    /* Tab Content Styles */
+    .upload-tab-content {
+        display: none;
+    }
+    
+    .upload-tab-content.active {
+        display: block;
+    }
+    
+    .upload-tab-content h3 {
+        color: #244855;
+        margin-bottom: 10px;
+    }
+    
+    .upload-tab-content p {
+        color: #666;
+        margin-bottom: 20px;
+    }
+    
+    /* Form Styles */
+    .upload-form {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+    }
+    
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #244855;
+    }
+    
+    .form-group input[type="text"],
+    .form-group select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+    
+    .form-group input[type="file"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background-color: #f8f9fa;
+    }
+    
+    .form-actions {
+        text-align: center;
+        margin-top: 30px;
+    }
+    
+    .btn-primary {
+        background-color: #244855;
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+        background-color: #1a3540;
+    }
+    
+    /* Uploaded Files Styles */
+    .uploaded-section {
+        margin-bottom: 40px;
+    }
+    
+    .uploaded-section h4 {
+        color: #244855;
+        margin-bottom: 15px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .uploaded-files-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+    }
+    
+    .uploaded-file-card {
+        border: 1px solid #eee;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+    
+    .file-preview {
+        height: 150px;
+        overflow: hidden;
+        background-color: #f8f9fa;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .file-preview img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+    
+    .file-info {
+        padding: 10px;
+    }
+    
+    .file-meta {
+        font-size: 12px;
+        color: #666;
+        margin-top: 5px;
+    }
+    
+    .file-actions {
+        display: flex;
+        border-top: 1px solid #eee;
+    }
+    
+    .file-action-btn {
+        flex: 1;
+        padding: 8px;
+        text-align: center;
+        color: #244855;
+        text-decoration: none;
+        font-size: 14px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .file-action-btn:hover {
+        background-color: #f8f9fa;
+    }
+    
+    .file-action-btn.delete-btn {
+        color: #dc3545;
+    }
+    
+    .file-action-btn.copied {
+        background-color: #28a745;
+        color: white;
+    }
+    
+    /* Documents Table Styles */
+    .files-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    
+    .files-table th,
+    .files-table td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .files-table th {
+        background-color: #f8f9fa;
+        color: #244855;
+        font-weight: bold;
+    }
+    
+    .action-cell {
+        display: flex;
+        gap: 10px;
+    }
+    
+    .no-files-message {
+        padding: 20px;
+        text-align: center;
+        color: #666;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+    }
+    
+    @media (max-width: 768px) {
+        .admin-nav {
+            flex-direction: column;
+        }
+        
+        .admin-nav-link {
+            padding: 10px;
+            border-right: none;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .uploaded-files-grid {
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        }
+        
+        .files-table thead {
+            display: none;
+        }
+        
+        .files-table, 
+        .files-table tbody, 
+        .files-table tr, 
+        .files-table td {
+            display: block;
+            width: 100%;
+        }
+        
+        .files-table tr {
+            margin-bottom: 15px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .files-table td {
+            display: flex;
+            padding: 10px;
+            text-align: right;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .files-table td:before {
+            content: attr(data-label);
+            font-weight: bold;
+            margin-right: auto;
+            color: #244855;
+        }
+        
+        .files-table td:last-child {
+            border-bottom: none;
+        }
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+        }
+        form {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        button {
+            display: block;
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Nosegay Public School Job Application</h1>
+    <form>
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date">
+
+        <label for="subject">Application for the Post of Teacher in (Subject):</label>
+        <input type="text" id="subject" name="subject">
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="fatherOrHusband">Father's/Husband's Name:</label>
+        <input type="text" id="fatherOrHusband" name="fatherOrHusband">
+
+        <label for="permanentAddress">Permanent Address:</label>
+        <textarea id="permanentAddress" name="permanentAddress"></textarea>
+
+        <label for="localAddress">Local Address:</label>
+        <textarea id="localAddress" name="localAddress"></textarea>
+
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" name="phone">
+
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob">
+
+        <h3>Educational Qualification Record</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>S.N.</th>
+                    <th>Class</th>
+                    <th>Subjects Taken</th>
+                    <th>Year of Passing</th>
+                    <th>Percent of Marks Obtained</th>
+                    <th>School/College</th>
+                    <th>University/Board</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Matric/Secondary</td>
+                    <td><input type="text" name="matricSubjects"></td>
+                    <td><input type="text" name="matricYear"></td>
+                    <td><input type="text" name="matricMarks"></td>
+                    <td><input type="text" name="matricSchool"></td>
+                    <td><input type="text" name="matricBoard"></td>
+                </tr>
+                <!-- Repeat for other qualifications -->
+            </tbody>
+        </table>
+
+        <label for="qualifications">Any Other Qualification:</label>
+        <textarea id="qualifications" name="qualifications"></textarea>
+
+        <label for="cocurricular">Co-curricular Achievements:</label>
+        <textarea id="cocurricular" name="cocurricular"></textarea>
+
+        <label for="medium">Medium of Education (Hindi/English):</label>
+        <input type="text" id="medium" name="medium">
+
+        <h3>Teaching/Administrative Experience</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>S.N.</th>
+                    <th>Name of the Institute</th>
+                    <th>Place</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Post Held</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td><input type="text" name="experienceInstitute1"></td>
+                    <td><input type="text" name="experiencePlace1"></td>
+                    <td><input type="date" name="experienceFrom1"></td>
+                    <td><input type="date" name="experienceTo1"></td>
+                    <td><input type="text" name="experiencePost1"></td>
+                </tr>
+                <!-- Repeat for other experiences -->
+            </tbody>
+        </table>
+
+        <label for="resume">Upload Resume:</label>
+        <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+
+        <button type="submit">Submit Application</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+
+{% block title %}SHRI SIDDHI VINAYAK EDUCATIONAL TRUST TIBBI - Management{% endblock %}
+
+{% block content %}
+<div class="mid">
+    <!-- Management Team Section -->
+    <section class="gallery">
+        <h2>School Management Team</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item" data-type="image">
+                <img src="{{ url_for('static', filename='images/director.jpeg') }}" alt="Management Image 1" onclick="openLightbox(0, 'image')">
+                <p class="image-title">Mr. Gauri Shankar Kanyani <br> (Director)</p>
+            </div>
+            <div class="gallery-item" data-type="image">
+                <img src="{{ url_for('static', filename='images/principal.jpeg') }}" alt="Management Image 2" onclick="openLightbox(1, 'image')">
+                <p class="image-title">Mr. Punit Kalyani <br> (Principal)</p>
+            </div>
+            <div class="gallery-item" data-type="image">
+                <img src="{{ url_for('static', filename='images/Treasurer.jpeg') }}" alt="Management Image 3" onclick="openLightbox(2, 'image')">
+                <p class="image-title">Mr. Seeta Ram Kalyani <br> (Treasurer)</p>
+            </div>
+            <div class="gallery-item" data-type="image">
+                <img src="{{ url_for('static', filename='images/PNA.jfif') }}" alt="Management Image 4" onclick="openLightbox(3, 'image')">
+                <p class="image-title">Mrs. Durga Devi <br> (Member)</p>
+            </div>
+            <div class="gallery-item" data-type="image">
+                <img src="{{ url_for('static', filename='images/PNA.jfif') }}" alt="Management Image 5" onclick="openLightbox(4, 'image')">
+                <p class="image-title">Mrs. Mr. Sunit Devi <br> (Member)</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Management Structure -->
+    <section class="management-structure">
+        <h2>Management Structure</h2>
+        <div class="organization-chart">
+            <div class="org-level">
+                <div class="org-box primary">
+                    <h3>Board of Trustees</h3>
+                    <p>Oversees the trust's operations and strategic direction</p>
+                </div>
+            </div>
+            <div class="org-level">
+                <div class="org-box secondary">
+                    <h3>Director</h3>
+                    <p>Mr. Gauri Shankar Kalyani</p>
+                </div>
+            </div>
+            <div class="org-level">
+                <div class="org-box tertiary">
+                    <h3>Principal</h3>
+                    <p>Mr. Punit Kalyani</p>
+                </div>
+            </div>
+            <div class="org-level multi">
+                <div class="org-box quaternary">
+                    <h3>Administrative Staff</h3>
+                    <p>Manages daily operations</p>
+                </div>
+                <div class="org-box quaternary">
+                    <h3>Teaching Faculty</h3>
+                    <p>Delivers educational curriculum</p>
+                </div>
+                <div class="org-box quaternary">
+                    <h3>Support Staff</h3>
+                    <p>Provides essential services</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox container -->
+    <div class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <div class="lightbox-content"></div>
+        <div class="lightbox-nav">
+            <button class="prev">&#10094;</button>
+            <button class="next">&#10095;</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .organization-chart {
+        margin: 30px auto;
+        max-width: 900px;
+    }
+    
+    .org-level {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+    
+    .org-level.multi {
+        justify-content: space-around;
+    }
+    
+    .org-box {
+        padding: 15px;
+        border-radius: 8px;
+        text-align: center;
+        width: 250px;
+        margin: 0 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    .org-box h3 {
+        margin-bottom: 5px;
+    }
+    
+    .org-box p {
+        font-size: 14px;
+    }
+    
+    .primary {
+        background-color: #244855;
+        color: white;
+    }
+    
+    .secondary {
+        background-color: #FFE569;
+        color: #244855;
+    }
+    
+    .tertiary {
+        background-color: #90EE90;
+        color: #244855;
+    }
+    
+    .quaternary {
+        background-color: #F5F5F5;
+        color: #244855;
+    }
+</style>
+{% endblock %}

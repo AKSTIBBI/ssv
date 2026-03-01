@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}SHRI SIDDHI VINAYAK EDUCATIONAL TRUST TIBBI - Fee Structure{% endblock %}
+
+{% block content %}
+<div class="mid">
+    <div class="fees-section">
+        <h2>Fee Structure</h2>
+        
+        <!-- Instructions Section -->
+        <div class="container">
+            <div class="instructions">
+                <p><strong>Instructions:</strong></p>
+                <p>1. Payment Deadlines - All fees must be paid within due date as applicable to avoid late penalties.</p>
+                <p>2. Late Payment Penalty - A late fee of ₹100 per day will be applied for payments received after the due date.</p>
+                <p>3. Refund Policy - Fees once paid are non-refundable, except in cases of relocation outside the city (submission of relevant proof required).</p>
+                <p>4. Installment Plan - You may opt to pay tuition fees in up to three equal installments—April, August, and December—without additional interest.</p>
+                <p>5. Form Submission - The fee payment receipt must be submitted to the class teacher within three days of payment.</p>
+                <p>6. Fee Structure Review - The school reserves the right to revise fees annually; parents will be notified at least one month in advance of any changes.</p>
+                <p>7. Contact for Queries - For any fee-related queries please contact the Accounts Office.</p>
+            </div>
+        </div>
+        
+        <p class="fees-subtitle">English Medium (Nursery to 12th)</p>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Class Name</th>
+                        <th>Admission Fees</th>
+                        <th>Development Fees</th>
+                        <th>Tuition Fees</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if fees %}
+                        {% for fee in fees %}
+                            <tr>
+                                <td>{{ fee.class_name }}</td>
+                                <td>₹{{ fee.admission_fee }}</td>
+                                <td>₹{{ fee.development_fee }}</td>
+                                <td>₹{{ fee.tuition_fee }}</td>
+                                <td>₹{{ fee.total }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="5">No fee structure information available.</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

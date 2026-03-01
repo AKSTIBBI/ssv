@@ -1,0 +1,7 @@
+
+        // SMS API details
+        const baseUrl = "https://alerts.prioritysms.com/api/v4/";
+        const apiKey = "A085b04763d2e186ca1f640d414241485";
+        const senderID = "SIDHIS";
+        const message = encodeURIComponent(`Dear user, Your OTP to login SchoolPro is ${generatedOTP}. Shri Siddhi Vinayak Shikshan Sansthan`);
+        const apiUrl = `${baseUrl}?api_key=${apiKey}&method=sms&message=${message}&to=91${mobileNumber}&sender=${senderID}`;

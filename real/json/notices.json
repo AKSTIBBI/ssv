@@ -1,0 +1,102 @@
+[
+    {
+        "date": "03",
+        "month": "Mar",
+        "title": "Holika Dahan",
+        "description": "HOLI HOLIDAY",
+        "author": "Principal",
+        "publish_date": "27-Feb-2026",
+        "notice_id": "notice_1772137700055",
+        "deleted": false
+    },
+    {
+        "date": "27",
+        "month": "Feb",
+        "title": "HOLIDAY",
+        "description": "HOLI",
+        "author": "PRINCIPAL",
+        "publish_date": "27-Feb-2026",
+        "notice_id": "notice_1772137538533",
+        "deleted": true
+    },
+    {
+        "date": "08",
+        "month": "Jun",
+        "title": "JSM",
+        "description": "HI",
+        "author": "AKS",
+        "publish_date": "08-Jun-2025",
+        "notice_id": "notice_1749382128050",
+        "deleted": true
+    },
+    {
+        "date": "08",
+        "month": "Jun",
+        "title": "JAISALMER",
+        "description": "ME AAJ SUNDAY ",
+        "author": "AMIT KUMAR",
+        "publish_date": "08-Jun-2025",
+        "notice_id": "notice_1749382087114",
+        "deleted": true
+    },
+    {
+        "date": "08",
+        "month": "Jun",
+        "title": "JAISALMER",
+        "description": "ME AAJ SUNDAY ",
+        "author": "AMIT KUMAR",
+        "publish_date": "08-Jun-2025",
+        "notice_id": "notice_1749381969204",
+        "deleted": true
+    },
+    {
+        "date": "08",
+        "month": "Jun",
+        "title": "RADHE KRISHNA GOVIND MURARI",
+        "description": "NAM KIRTAN",
+        "author": "AMIT",
+        "publish_date": "08-Jun-2025",
+        "notice_id": "notice_1749364633452",
+        "deleted": true
+    },
+    {
+        "date": "07",
+        "month": "Jun",
+        "title": "HOLIDAY - GANESH CHATURTHI",
+        "description": "The idol of Shri Ganesh ji was placed in our school. The sacred program of Ganpati Visarjan Mahotsav will be held on 04/09/2019 at 04:00 pm. All of you are invited.",
+        "author": "Principal",
+        "publish_date": "07-Jun-2025",
+        "notice_id": "notice_1749317665716",
+        "deleted": false
+    },
+    {
+        "date": "07",
+        "month": "Jun",
+        "title": "RTE ADMISSION 2025-26",
+        "description": "RTE Admission for session 2025-26 has been started. Please contact to Admin Block for more information or visit RTE section of the website.",
+        "author": "Principal",
+        "publish_date": "07-Jun-2025",
+        "notice_id": "notice_1749317609074",
+        "deleted": false
+    },
+    {
+        "date": "07",
+        "month": "Jun",
+        "title": "REPUBLIC DAY CELEBRATION",
+        "description": "There will be a celebration on the occassion of republic day 26th January 2025 in school campus",
+        "author": "Principal",
+        "publish_date": "07-Jun-2025",
+        "notice_id": "notice_1749317578521",
+        "deleted": false
+    },
+    {
+        "date": "07",
+        "month": "Jun",
+        "title": "Aaj shanivar hai",
+        "description": "testing",
+        "author": "done",
+        "publish_date": "07-Jun-2025",
+        "notice_id": "notice_1749316925285",
+        "deleted": true
+    }
+]

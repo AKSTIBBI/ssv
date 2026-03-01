@@ -1,0 +1,47 @@
+<div class="mid">
+    <div class="timetable-section">
+        <h2>Academic Time Table</h2>
+        
+        <div class="timetable-controls">
+            <div class="class-selector">
+                <label for="class-select">Select Class:</label>
+                <select id="class-select" onchange="showTimetable(this.value)">
+                    <option value="">-- Select Class --</option>
+                    <option value="nursery">Nursery</option>
+                    <option value="kg">KG</option>
+                    <option value="1">Class 1</option>
+                    <option value="2">Class 2</option>
+                    <option value="3">Class 3</option>
+                    <option value="4">Class 4</option>
+                    <option value="5">Class 5</option>
+                    <option value="6">Class 6</option>
+                    <option value="7">Class 7</option>
+                    <option value="8">Class 8</option>
+                    <option value="9">Class 9</option>
+                    <option value="10">Class 10</option>
+                    <option value="11-science">Class 11 - Science</option>
+                    <option value="11-commerce">Class 11 - Commerce</option>
+                    <option value="11-arts">Class 11 - Arts</option>
+                    <option value="12-science">Class 12 - Science</option>
+                    <option value="12-commerce">Class 12 - Commerce</option>
+                    <option value="12-arts">Class 12 - Arts</option>
+                </select>
+            </div>
+        </div>
+        
+        <div id="timetable-container" class="timetable-container">
+            <p class="select-message">Please select a class to view the time table.</p>
+        </div>
+        
+        <div class="timetable-notes">
+            <h3>Important Notes:</h3>
+            <ul>
+                <li>School begins at 8:00 AM and ends at 2:30 PM from Monday to Friday.</li>
+                <li>Saturday is a half-day with school ending at 12:30 PM.</li>
+                <li>There is a 30-minute break from 10:30 AM to 11:00 AM for all classes.</li>
+                <li>Extra-curricular activities are scheduled after regular class hours from Monday to Thursday.</li>
+                <li>School assemblies are held every Monday and Friday from 8:00 AM to 8:15 AM.</li>
+            </ul>
+        </div>
+    </div>
+</div>

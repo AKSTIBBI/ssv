@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shri Siddhi Vinayak Shikshan Sansthan, Tibbi</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+</head>
+
+<body>
+    <div class="full">
+        <div id="header"></div> <!-- Header will load here -->
+        <!-- Main content area -->
+        <div class="login-container">
+            <div class="login-box">
+                <h2>SchoolPro_Login</h2>
+                <form action="success.html" method="get" onsubmit="validateOTP(event)">
+                    <label for="mobno">Mobile No : </label>
+                    <input type="text" id="mobno" name="mobno" minlength="10" maxlength="10" class="inputtextbox">
+                    <button type="button" onclick="sendOTP()">Send OTP</button>
+                    <section id="hideotp" style="display: none;">
+                        <label for="otp">Enter OTP : </label>
+                        <input type="password" name="otp" id="otp" class="inputtextbox">
+                        <button type="submit">Submit</button>
+                    </section>
+                    <button type="reset">Reset</button>
+                </form>
+            </div>
+        </div>
+        <div id="footer"></div> <!-- Footer will load here -->
+    </div>
+</body>
+<!-- Link to the external JavaScript file -->
+<script src="script.js"></script>
+
+</html>

@@ -1,0 +1,87 @@
+[
+    {
+        "name": "G S Kalyani",
+        "title": "Director",
+        "image": "images/faculties/director.jpeg"
+    },
+    {
+        "name": "Mr. Punit Kalyani",
+        "title": "Principal (MBA, M.Com., M.Ed.)",
+        "image": "images/faculties/principal.jpeg"
+    },
+    {
+        "name": "Ram Kumar Sarswat",
+        "title": "Guardian",
+        "image": "images/faculties/faculty1.jpg"
+    },
+    {
+        "name": "Vinod Sharma",
+        "title": "Principal",
+        "image": "images/faculties/pna.jfif"
+    },
+    {
+        "name": "Madan Lal Saharan",
+        "title": "English (Exp - 20Years)",
+        "image": "images/faculties/pna.jfif"
+    },
+    {
+        "name": "Manish Kaswan",
+        "title": "Political Science",
+        "image": "images/faculties/pna.jfif"
+    },
+    {
+        "name": "Sandeep Chahar",
+        "title": "Computer",
+        "image": "images/faculties/pna.jfif"
+    },
+    {
+        "name": "Anmol Bhatheja",
+        "title": "Physics",
+        "image": "images/faculties/pna.jfif"
+    },
+    {
+        "name": "Akhtar Ali",
+        "title": "Chemistry",
+        "image": "images/faculties/pna.jfif"
+    },
+    {
+        "name": "Vikesh Bishnoi",
+        "title": "Biology",
+        "image": "images/faculties/pna.jfif"
+    },
+    {
+        "name": "Vinod Kumar",
+        "title": "Maths",
+        "image": "images/faculties/pna.jfif"
+    },
+    {
+        "name": "Neetu Bala",
+        "title": "English",
+        "image": "images/faculties/pna.jfif"
+    },
+    {
+        "name": "Jai Singh Degesar",
+        "title": "PTI",
+        "image": "images/faculties/pna.jfif"
+    },
+    {
+        "name": "Hansraj Sharma",
+        "title": "PTI",
+        "image": "images/faculties/pna.jfif"
+    },
+    {
+        "name": "Vinod Shiwan",
+        "title": "Accountant",
+        "image": "images/faculties/pna.jfif"
+    },
+    {
+        "name": "Shiv Kumar Bhatiwal",
+        "title": "Sr. Clerk",
+        "image": "images/faculties/pna.jfif"
+    },
+    {
+        "name": "Amit Mehta",
+        "title": "Sr Clerk",
+        "image": "images/faculties/pna.jfif"
+    }
+]

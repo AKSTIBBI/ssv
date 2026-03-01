@@ -1,0 +1,40 @@
+:root {
+  /* primary color shifted to match syllabus/legacy theme */
+  --color-primary: #244855; /* dark teal used across old styles */
+  --color-primary-700: #1e3f49; /* slightly darker for gradients and hover */
+  --color-secondary: #f4c95d;
+  --color-accent: #0ea5a4;
+  --color-success: #16a34a;
+  --color-danger: #dc2626;
+
+  --color-bg: #f6f7fb;
+  --color-surface: #ffffff;
+  --color-text: #13324b;
+  --color-muted: #5f7386;
+  --color-border: #d8e1ea;
+
+  --shadow-sm: 0 4px 12px rgba(16, 32, 48, 0.08);
+  --shadow-md: 0 12px 30px rgba(16, 32, 48, 0.12);
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-md: 16px;
+  --text-lg: 20px;
+  --text-xl: 28px;
+  --text-2xl: 36px;
+
+  --font-family-base: "Poppins", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  --transition-fast: 0.2s ease;
+}

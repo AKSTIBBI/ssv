@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block title %}SHRI SIDDHI VINAYAK EDUCATIONAL TRUST TIBBI - Financials{% endblock %}
+
+{% block content %}
+<div class="mid">
+    <div class="financials-section">
+        <h2>Financial Documents</h2>
+        
+        <div class="financial-intro">
+            <p>Shri Siddhi Vinayak Educational Trust is committed to transparency in its financial operations. Below you can find our financial documents organized by year and document type.</p>
+        </div>
+
+        {% if documents %}
+            {% set grouped_documents = {} %}
+            {% for document in documents %}
+                {% if document.year not in grouped_documents %}
+                    {% set _ = grouped_documents.update({document.year: []}) %}
+                {% endif %}
+                {% set _ = grouped_documents[document.year].append(document) %}
+            {% endfor %}
+            
+            {% for year, docs in grouped_documents|dictsort(reverse=true) %}
+                <details class="fy-group" {% if loop.first %}open{% endif %}>
+                    <summary class="fy-title">Financial Year {{ year }}</summary>
+                    <div class="financials-grid">
+                        {% for doc in docs %}
+                            <div class="financial-card">
+                                <div class="financial-type">{{ doc.document_type }}</div>
+                                <div class="financial-year">{{ year }}</div>
+                                <a href="{{ doc.document_path }}" target="_blank" class="pdf-link">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="PDF Icon" style="width:40px; height:40px;">
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </details>
+            {% endfor %}
+        {% else %}
+            <div class="no-documents">
+                <p>No financial documents are available at this time.</p>
+            </div>
+        {% endif %}
+        
+        <div class="disclaimer">
+            <h3>Financial Transparency</h3>
+            <p>As a registered educational trust, we maintain complete transparency in our financial operations. All our financial documents are audited by certified professionals and are available for public inspection as per the requirements of the Rajasthan Trust Act and relevant tax laws.</p>
+            <p>For any specific queries regarding our finances, please contact our accounts department at <a href="mailto:accounts@ssvtrust.com">accounts@ssvtrust.com</a>.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .financial-intro, .disclaimer {
+        background-color: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+        margin: 20px 0;
+    }
+    
+    .disclaimer h3 {
+        color: #244855;
+        margin-bottom: 10px;
+    }
+    
+    .no-documents {
+        padding: 50px;
+        text-align: center;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        margin: 20px 0;
+    }
+</style>
+{% endblock %}

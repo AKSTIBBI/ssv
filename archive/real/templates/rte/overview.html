@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+
+{% block title %}SHRI SIDDHI VINAYAK EDUCATIONAL TRUST TIBBI - RTE Overview{% endblock %}
+
+{% block content %}
+<div class="mid">
+    <div class="rte-overview">
+        <h2>Right to Education (RTE) Overview</h2>
+        
+        <div class="rte-section">
+            <h3>What is RTE?</h3>
+            <p>The Right of Children to Free and Compulsory Education Act, 2009 (RTE Act) is an Act of the Parliament of India that describes the modalities of the importance of free and compulsory education for children between the ages of 6 and 14 years in India, as per Article 21A of the Indian Constitution.</p>
+            <p>This act came into force on April 1, 2010, making India one of the countries that have made education a fundamental right for every child.</p>
+        </div>
+        
+        <div class="rte-section">
+            <h3>Key Provisions of RTE Act</h3>
+            <ul>
+                <li><strong>Free and Compulsory Education:</strong> Every child between the ages of 6 and 14 years has the right to free and compulsory education in a neighborhood school till the completion of elementary education.</li>
+                <li><strong>25% Reservation:</strong> Private schools must reserve 25% of seats for children from disadvantaged groups and weaker sections in the entry-level class (nursery or class 1).</li>
+                <li><strong>No Capitation Fee:</strong> No school can charge any capitation fee or conduct any screening procedure for admission of children.</li>
+                <li><strong>No Detention Policy:</strong> No child admitted to a school shall be held back in any class or expelled from school until the completion of elementary education.</li>
+                <li><strong>Infrastructure Norms:</strong> All schools must adhere to specified norms and standards relating to pupil-teacher ratio, buildings, teaching hours, and instructional materials.</li>
+                <li><strong>Teacher Qualifications:</strong> All teachers in schools must possess the minimum qualifications prescribed under the Act.</li>
+            </ul>
+        </div>
+        
+        <div class="rte-section">
+            <h3>RTE at Shri Siddhi Vinayak Educational Trust</h3>
+            <p>Shri Siddhi Vinayak Educational Trust is fully committed to implementing the provisions of the RTE Act in letter and spirit. We believe that education is a fundamental right of every child, and we strive to ensure that all children, regardless of their socio-economic background, have access to quality education.</p>
+            <p>Our institution reserves 25% of seats in entry-level classes for children from economically weaker sections and disadvantaged groups. We provide these students with free textbooks, uniforms, and other essential supplies to ensure that they can participate fully in the educational process.</p>
+            <p>We strictly follow a no-discrimination policy and ensure that all students, regardless of their background, receive equal treatment and opportunities within our school.</p>
+        </div>
+        
+        <div class="rte-section">
+            <h3>Our Achievements in RTE Implementation</h3>
+            <div class="achievement-cards">
+                <div class="achievement-card">
+                    <div class="achievement-number">150+</div>
+                    <div class="achievement-text">Students admitted under RTE since 2018</div>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-number">100%</div>
+                    <div class="achievement-text">Compliance with RTE norms and standards</div>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-number">20+</div>
+                    <div class="achievement-text">Awareness programs conducted for parents</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="rte-section">
+            <h3>How to Apply Under RTE</h3>
+            <p>To apply for admission under the RTE quota at Shri Siddhi Vinayak Educational Trust, please follow these steps:</p>
+            <ol>
+                <li>Check your eligibility under the RTE Act (economically weaker sections or disadvantaged groups).</li>
+                <li>Obtain and fill out the RTE application form from our school office or download it from our website.</li>
+                <li>Submit the completed application form along with the necessary documents (income certificate, caste certificate, residence proof, etc.) to our school office within the specified timeline.</li>
+                <li>Applications are processed based on the guidelines provided by the government, and admissions are granted accordingly.</li>
+            </ol>
+            <p>For more information about the RTE admission process, please visit our <a href="{{ url_for('rte_policy') }}">RTE Policy</a> page or contact our RTE coordinator at the school office.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .rte-overview {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    
+    .rte-section {
+        margin-bottom: 30px;
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .rte-section h3 {
+        color: #244855;
+        margin-bottom: 15px;
+        border-bottom: 2px solid #FFE569;
+        padding-bottom: 10px;
+    }
+    
+    .rte-section p, .rte-section li {
+        line-height: 1.6;
+        margin-bottom: 10px;
+    }
+    
+    .rte-section ul, .rte-section ol {
+        padding-left: 20px;
+        margin-bottom: 15px;
+    }
+    
+    .achievement-cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+    
+    .achievement-card {
+        flex: 1;
+        min-width: 250px;
+        background-color: #244855;
+        color: white;
+        padding: 20px;
+        margin: 10px;
+        border-radius: 8px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .achievement-number {
+        font-size: 36px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #FFE569;
+    }
+    
+    .achievement-text {
+        font-size: 16px;
+    }
+    
+    @media (max-width: 768px) {
+        .achievement-card {
+            min-width: 100%;
+            margin: 10px 0;
+        }
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,58 @@
+[
+    {
+        "class": "Nursery",
+        "monthly_fee": "10000",
+        "annual_fee": "120000",
+        "special_charges": "Sports, Lab",
+        "discount": "5",
+        "description": "English Medium - Nursery"
+    },
+    {
+        "class": "KG",
+        "monthly_fee": "10500",
+        "annual_fee": "126000",
+        "special_charges": "Sports, Lab",
+        "discount": "5",
+        "description": "English Medium - KG"
+    },
+    {
+        "class": "Class I",
+        "monthly_fee": "11000",
+        "annual_fee": "132000",
+        "special_charges": "Sports, Lab, Transport",
+        "discount": "5",
+        "description": "English Medium - Class I"
+    },
+    {
+        "class": "Class II",
+        "monthly_fee": "11000",
+        "annual_fee": "132000",
+        "special_charges": "Sports, Lab, Transport",
+        "discount": "5",
+        "description": "English Medium - Class II"
+    },
+    {
+        "class": "Class III",
+        "monthly_fee": "11500",
+        "annual_fee": "138000",
+        "special_charges": "Sports, Lab, Transport",
+        "discount": "5",
+        "description": "English Medium - Class III"
+    },
+    {
+        "class": "Class IV",
+        "monthly_fee": "11500",
+        "annual_fee": "138000",
+        "special_charges": "Sports, Lab, Transport",
+        "discount": "5",
+        "description": "English Medium - Class IV"
+    },
+    {
+        "class": "Class V",
+        "monthly_fee": "12000",
+        "annual_fee": "144000",
+        "special_charges": "Sports, Lab, Transport",
+        "discount": "5",
+        "description": "English Medium - Class V"
+    }
+]

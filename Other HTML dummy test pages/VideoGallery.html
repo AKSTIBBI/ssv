@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="full">
+        <div id="header"></div>
+        <!-- Header will load here -->
+        <!-- Main content area -->
+        <div class="mid">
+                <!-- Video Gallery Section -->
+                <section class="video-gallery">
+                    <h2>School Video Gallery</h2>
+                    <div class="video-grid">
+                        <div class="video-item">
+                            <img src="https://img.youtube.com/vi/c5I199uvV2E/0.jpg" alt="Video Thumbnail 1" onclick="openLightbox(0, 'video')" data-video-id="c5I199uvV2E">
+                            <p class="video-title">L-3 Sanskrit Class-6th Lesson-1 Part-1 By Heeramani Bhatia <Title></Title></p>
+                        </div>
+                        <div class="video-item">
+                            <img src="https://img.youtube.com/vi/bdbEGwtyxWA/0.jpg" alt="Video Thumbnail 2" onclick="openLightbox(1, 'video')" data-video-id="bdbEGwtyxWA">
+                            <p class="video-title">L-5 President - Polity Part-4 By Hardeep Singh <Title></Title></p>
+                        </div>
+                        <div class="video-item">
+                            <img src="https://img.youtube.com/vi/8AW2zrBYjBw/0.jpg" alt="Video Thumbnail 3" onclick="openLightbox(2, 'video')" data-video-id="8AW2zrBYjBw">
+                            <p class="video-title">L-2 Set in Maths Part-1 Class-11th By Vinod Kumar Suthar<Title></Title></p>
+                        </div>
+                        <div class="video-item">
+                            <img src="https://img.youtube.com/vi/xRdStHvg5-o/0.jpg" alt="Video Thumbnail 4" onclick="openLightbox(3, 'video')" data-video-id="xRdStHvg5-o">
+                            <p class="video-title">L 2 आक्षांश व देशांतर Geography By Rekha Suthar<Title></Title></p>
+                        </div>
+                        <div class="video-item">
+                            <img src="https://img.youtube.com/vi/0smgsj8wGkQ/0.jpg" alt="Video Thumbnail 5" onclick="openLightbox(4, 'video')" data-video-id="0smgsj8wGkQ">
+                            <p class="video-title">L-6 Voice Part 1 AND 2 By Madan Ji Saharan <Title></Title></p>
+                        </div>
+                        <div class="video-item">
+                            <img src="https://img.youtube.com/vi/oGYtYt8BKWg/0.jpg" alt="Video Thumbnail 6" onclick="openLightbox(5, 'video')" data-video-id="oGYtYt8BKWg">
+                            <p class="video-title">L-4 Alcohol Part 4 - Preparation Method Of Alcohol By Akhtar Ali <Title></Title></p>
+                        </div>
+                        <div class="video-item">
+                            <img src="https://img.youtube.com/vi/5meDiZ7PfhY/0.jpg" alt="Video Thumbnail 7" onclick="openLightbox(6, 'video')" data-video-id="5meDiZ7PfhY">
+                            <p class="video-title">L-3 Verb (English) By Paramjeet Kaur <Title></Title></p>
+                        </div>
+                        <div class="video-item">
+                            <img src="https://img.youtube.com/vi/ol6cd37mKxk/0.jpg" alt="Video Thumbnail 8" onclick="openLightbox(7, 'video')" data-video-id="ol6cd37mKxk">
+                            <p class="video-title">L-3 Percentage Part 3 in Maths By Mukesh Kumar</p>
+                        </div>
+                        <div class="video-item">
+                            <img src="https://img.youtube.com/vi/E_IwgcF34Ik/0.jpg" alt="Video Thumbnail 9" onclick="openLightbox(8, 'video')" data-video-id="E_IwgcF34Ik">
+                            <p class="video-title">L-3 काल (Tense in Hindi) Part-2 By Pradeep Sharma</p>
+                        </div>
+                        <div class="video-item">
+                            <img src="https://img.youtube.com/vi/yTFnkTTWHT4/0.jpg" alt="Video Thumbnail 10" onclick="openLightbox(9, 'video')" data-video-id="yTFnkTTWHT4">
+                            <p class="video-title">L 3 भारतीय इतिहास के स्त्रोत Part 2 History Class 12th By Prem Singh Gill</p>
+                        </div>
+                    </div>
+                </section>
+            
+                <!-- Lightbox Container for Videos -->
+                <div id="lightbox" class="lightbox">
+                    <span class="close" onclick="closeLightbox()">&times;</span>
+                    <span class="prev" onclick="changeMedia(-1)">&#10094;</span>
+                    <div id="lightbox-content" class="lightbox-content"></div>
+                    <span class="next" onclick="changeMedia(1)">&#10095;</span>
+                </div>
+            <div id="footer"></div> <!-- Footer will load here -->
+        </div>
+        <!-- Link to the external JavaScript file -->
+        <script src="script.js"></script>
+</body>
+
+</html>

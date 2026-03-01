@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shri Siddhi Vinayak Shikshan Sansthan, Tibbi</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+</head>
+
+<body>
+    <div class="full">
+        <div id="header"></div> <!-- Header will load here -->
+        <!-- Main content area -->
+        <div class="admissionmid">
+            <div class="admissionmid1">
+                <form action="">
+                    <h2>Join Us</h2>
+
+                    <fieldset>
+                        <legend>Enquiry</legend>
+
+                        <!-- Left Column -->
+                        <div class="form-left">
+
+                            <label for="subject">Application for the Post of Teacher in (Subject):</label>
+                            <input type="text" id="subject" name="subject">
+
+                            <label for="name">Name:</label>
+                            <input type="text" id="name" name="name" required>
+
+                            <label for="father-name">Father's Name:</label>
+                            <input type="text" name="father-name" id="father-name" placeholder="Enter Father's Name..."
+                                required>
+
+                            <label for="mother-name">Mother's Name:</label>
+                            <input type="text" name="mother-name" id="mother-name" placeholder="Enter Father's Name..."
+                                required>
+
+                            <label for="dob">DOB:</label>
+                            <input type="date" name="dob" id="dob" required>
+
+
+
+                            <label for="photo">Choose Photo:</label>
+                            <input type="file" name="photo" id="photo" required>
+                        </div>
+
+                        <!-- Right Column -->
+                        <div class="form-right">
+
+
+                            <label>Gender:</label>
+                            <div>
+                                <input type="radio" name="gender" value="M" id="male" required>
+                                <label for="male">Male</label>
+
+                                <input type="radio" name="gender" value="F" id="female" required>
+                                <label for="female">Female</label>
+
+                                <input type="radio" name="gender" value="O" id="transgender" required>
+                                <label for="transgender">Transgender</label>
+                            </div>
+
+                            <label>Languages You Know:</label>
+                            <div>
+                                <input type="checkbox" name="language[]" value="Hindi" id="hindi">
+                                <label for="hindi">Hindi</label>
+
+                                <input type="checkbox" name="language[]" value="English" id="english">
+                                <label for="english">English</label>
+
+                                <input type="checkbox" name="language[]" value="Punjabi" id="punjabi">
+                                <label for="punjabi">Punjabi</label>
+
+                                <input type="checkbox" name="language[]" value="Marathi" id="marathi">
+                                <label for="marathi">Marathi</label>
+                            </div>
+                            <label for="cocurricular">Co-curricular Achievements:</label>
+                            <textarea id="cocurricular" name="cocurricular"></textarea>
+
+                            <label for="medium">Medium of Education (Hindi/English):</label>
+                            <input type="text" id="medium" name="medium">
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Contact Details</legend>
+
+                        <div class="form-left">
+                            <label for="mobno">Mobile No.:</label>
+                            <input type="number" name="mobno" id="mobno" required maxlength="10"
+                                placeholder="Enter Mobile Number...">
+                            <label for="state">State:</label>
+                            <select name="state" id="state" required>
+                                <option value="">Select State</option>
+                            </select>
+                            <label for="permanentAddress">Permanent Address:</label>
+                            <textarea id="permanentAddress" name="permanentAddress"></textarea>
+                        </div>
+                        <div class="form-right">
+                            <label for="email">Email-Id:</label>
+                            <input type="email" name="email" id="email" required placeholder="Enter E-Mail Address...">
+
+                            <label for="district">District:</label>
+                            <select name="district" id="district" required>
+                                <option value="">Select District</option>
+                            </select>
+
+                            <label for="localAddress">Local Address:</label>
+                            <textarea id="localAddress" name="localAddress"></textarea>
+                        </div>
+
+                    </fieldset>
+                    <fieldset>
+                        <legend>Educational Qualification Record</legend>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>S.N.</th>
+                                    <th>Class</th>
+                                    <th>Subjects Taken</th>
+                                    <th>Year of Passing</th>
+                                    <th>Percent of Marks Obtained</th>
+                                    <th>School/College</th>
+                                    <th>University/Board</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Secondary</td>
+                                    <td><input type="text" name="matricSubjects"></td>
+                                    <td><input type="text" name="matricYear"></td>
+                                    <td><input type="text" name="matricMarks"></td>
+                                    <td><input type="text" name="matricSchool"></td>
+                                    <td><input type="text" name="matricBoard"></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Sen. Secondary</td>
+                                    <td><input type="text" name="matricSubjects"></td>
+                                    <td><input type="text" name="matricYear"></td>
+                                    <td><input type="text" name="matricMarks"></td>
+                                    <td><input type="text" name="matricSchool"></td>
+                                    <td><input type="text" name="matricBoard"></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Graduation</td>
+                                    <td><input type="text" name="matricSubjects"></td>
+                                    <td><input type="text" name="matricYear"></td>
+                                    <td><input type="text" name="matricMarks"></td>
+                                    <td><input type="text" name="matricSchool"></td>
+                                    <td><input type="text" name="matricBoard"></td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Post Graduation</td>
+                                    <td><input type="text" name="matricSubjects"></td>
+                                    <td><input type="text" name="matricYear"></td>
+                                    <td><input type="text" name="matricMarks"></td>
+                                    <td><input type="text" name="matricSchool"></td>
+                                    <td><input type="text" name="matricBoard"></td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>B.Ed/M.Ed</td>
+                                    <td><input type="text" name="matricSubjects"></td>
+                                    <td><input type="text" name="matricYear"></td>
+                                    <td><input type="text" name="matricMarks"></td>
+                                    <td><input type="text" name="matricSchool"></td>
+                                    <td><input type="text" name="matricBoard"></td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>PhD</td>
+                                    <td><input type="text" name="matricSubjects"></td>
+                                    <td><input type="text" name="matricYear"></td>
+                                    <td><input type="text" name="matricMarks"></td>
+                                    <td><input type="text" name="matricSchool"></td>
+                                    <td><input type="text" name="matricBoard"></td>
+                                </tr>
+                                <!-- Repeat for other qualifications -->
+                            </tbody>
+                        </table>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Teaching/Administrative Experience</legend>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>S.N.</th>
+                                    <th>Name of the Institute</th>
+                                    <th>Place</th>
+                                    <th>From</th>
+                                    <th>To</th>
+                                    <th>Post Held</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td><input type="text" name="experienceInstitute1"></td>
+                                    <td><input type="text" name="experiencePlace1"></td>
+                                    <td><input type="date" name="experienceFrom1"></td>
+                                    <td><input type="date" name="experienceTo1"></td>
+                                    <td><input type="text" name="experiencePost1"></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td><input type="text" name="experienceInstitute1"></td>
+                                    <td><input type="text" name="experiencePlace1"></td>
+                                    <td><input type="date" name="experienceFrom1"></td>
+                                    <td><input type="date" name="experienceTo1"></td>
+                                    <td><input type="text" name="experiencePost1"></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td><input type="text" name="experienceInstitute1"></td>
+                                    <td><input type="text" name="experiencePlace1"></td>
+                                    <td><input type="date" name="experienceFrom1"></td>
+                                    <td><input type="date" name="experienceTo1"></td>
+                                    <td><input type="text" name="experiencePost1"></td>
+                                </tr>
+
+                                <!-- Repeat for other experiences -->
+                            </tbody>
+                        </table>
+                    </fieldset>
+
+                    <div class="form-actions">
+                        <button type="submit">Submit</button>
+                        <button type="reset">Reset</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="footer"></div> <!-- Footer will load here -->
+    </div>
+</body>
+<!-- Link to the external JavaScript file -->
+<script src="script.js"></script>
+
+</html>

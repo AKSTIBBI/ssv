@@ -1,0 +1,123 @@
+#notices-list {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f7f9fc;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.notice-card {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-left: 5px solid #007BFF; /* blue accent */
+    border-radius: 5px;
+    margin-bottom: 15px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: box-shadow 0.3s ease;
+}
+
+.notice-card:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.notice-card h4 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.notice-card small {
+    color: #666;
+}
+
+.notice-card p {
+    margin: 10px 0;
+    color: #444;
+}
+
+.notice-card button {
+    background-color: #dc3545; /* red */
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.notice-card button:hover {
+    background-color: #c82333;
+}
+
+
+/* admin page add notice section css */
+
+#admin-section-content {
+    max-width: 60vw;
+    margin: 40px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#admin-section-content h3 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 26px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+#noticeForm input,
+#noticeForm textarea {
+    width: 100%;
+    padding: 14px 16px;
+    margin-bottom: 18px;
+    font-size: 16px;
+    border: 1px solid #ced4da;
+    border-radius: 10px;
+    background-color: #f8f9fa;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#noticeForm input:focus,
+#noticeForm textarea:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.15);
+    outline: none;
+}
+
+#noticeForm textarea {
+    height: 120px;
+    resize: vertical;
+}
+
+#noticeForm button {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#noticeForm button:hover {
+    background: linear-gradient(135deg, #0056b3, #003d82);
+}
+
+#notice-status {
+    margin-top: 16px;
+    text-align: center;
+    font-weight: 500;
+    color: #28a745; /* Success green */
+    font-size: 15px;
+}

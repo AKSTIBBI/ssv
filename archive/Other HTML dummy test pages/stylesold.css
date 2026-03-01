@@ -1,0 +1,111 @@
+header img{
+    height: 90px;
+    vertical-align: middle;
+}
+header {
+    text-align-last: center;
+    background-color: #B31312;
+    color: wheat;
+    padding-left: 0px;
+    padding-top: 0.1px;
+    margin: 0px;
+}
+header h1 a {
+    text-decoration: none;
+    color: wheat;
+    text-shadow: 2px 2px 10px black, 2px 2px 5px white;
+    font-family:  'Times New Roman', Times, sans-serif;
+    font-size: 4.5vw;
+}
+header a:hover{
+    color: black;
+}
+nav a:hover{
+    color: white;
+    background-color: black;
+    outline: ridge black;
+    border-color: white;
+}
+nav a {
+    background-color: wheat;
+    color: #B31312;
+    margin-left: 40px;
+    border-style: solid;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-color: wheat;
+    outline: ridge white;
+    outline-offset: 2px;
+    text-decoration: none;
+}
+main img {
+    border-radius: 0%;
+}
+.indexmid{
+    background-color:#B31312;
+    margin-left: 0px;
+}
+section img{
+    width: 97vw;
+    height: 30vw;
+}
+footer{
+    background-color: #B31312;
+    text-align-last: center;
+    padding: 1px;
+    
+}
+footer p {
+    color: wheat;
+}
+form {
+    text-align: center;
+}
+.grid-container-mid{
+    text-align: center;
+    background-color:blanchedalmond;
+    color: #B31312;
+    padding: 10px;
+}
+.grid-item-mid {
+    background-color: blanchedalmond;
+    text-align: center;
+    padding: 10px;
+    font-size: 15px;
+    width: 33.33%;
+    float: left;
+    height: 160px;
+}
+.admissionmid{
+    text-align: left;
+}
+* {
+    box-sizing: border-box;
+}
+@media screen and (max width : 600px) {
+.grid-item{
+    width: 100%;
+    }    
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 200px;
+    min-height: 20px;
+    z-index: 1;
+}  
+  .dropdown-content a {
+    padding: 2px 5px;
+    display: block;
+    text-decoration: none;
+    outline-offset: -4px;
+    outline-style: ridge;
+    border-style:dotted;
+  }
+  .dropdown:hover .dropdown-content {
+      display: block;
+  }

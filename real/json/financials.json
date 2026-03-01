@@ -1,0 +1,25 @@
+[
+    {
+        "id": "doc_69a0ccd803299",
+        "title": "annual report",
+        "category": "Annual Report",
+        "description": "annual report 2024-25",
+        "document_url": "real/uploads/Financials/doc_69a0cf04e26cf.pdf",
+        "date_added": "2026-02-27 04:14:40",
+        "date_published": "2023-03-31",
+        "visibility": "public",
+        "status": "active",
+        "date_modified": "2026-02-27 04:23:57"
+    },
+    {
+        "id": "doc_69a1d6b80b9b0",
+        "title": "annual report",
+        "category": "Audit Report",
+        "description": "audit report",
+        "document_url": "real/uploads/Financials/doc_69a1d6b7eca18.pdf",
+        "date_added": "2026-02-27 23:09:04",
+        "date_published": "2024-02-27",
+        "visibility": "public",
+        "status": "active"
+    }
+]

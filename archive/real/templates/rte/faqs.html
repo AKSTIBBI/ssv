@@ -1,0 +1,370 @@
+{% extends 'base.html' %}
+
+{% block title %}SHRI SIDDHI VINAYAK EDUCATIONAL TRUST TIBBI - RTE FAQs{% endblock %}
+
+{% block content %}
+<div class="mid">
+    <div class="rte-faqs">
+        <h2>Frequently Asked Questions (FAQs) about RTE</h2>
+        
+        <div class="faq-search">
+            <input type="text" id="faqSearch" placeholder="Search FAQs..." onkeyup="searchFAQs()">
+            <i class="fas fa-search search-icon"></i>
+        </div>
+        
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What is the Right to Education (RTE) Act?</h3>
+                    <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                </div>
+                <div class="faq-answer">
+                    <p>The Right to Education (RTE) Act, 2009 is an Act of the Parliament of India that makes education a fundamental right for children between the ages of 6 and 14 years. Under this act, education is free and compulsory for all children within this age group, and schools must reserve 25% of their seats at the entry level for children from economically weaker sections and disadvantaged groups.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Who is eligible for admission under RTE?</h3>
+                    <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                </div>
+                <div class="faq-answer">
+                    <p>Children belonging to economically weaker sections (EWS) with family income less than Rs. 8 lakhs per annum, disadvantaged groups (SC/ST/OBC-Non-Creamy Layer), children with disabilities, and orphans/children in need of care and protection are eligible for admission under RTE. The child must be of appropriate age for the class they are seeking admission to.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What documents are required for RTE admission?</h3>
+                    <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                </div>
+                <div class="faq-answer">
+                    <p>The following documents are typically required:</p>
+                    <ul>
+                        <li>Birth Certificate of the child</li>
+                        <li>Residence proof (Aadhaar Card, Ration Card, Voter ID, etc.)</li>
+                        <li>Income Certificate (for EWS category)</li>
+                        <li>Caste Certificate (for SC/ST/OBC categories)</li>
+                        <li>Disability Certificate (if applicable)</li>
+                        <li>Recent passport-sized photographs</li>
+                        <li>Other documents as specified by the state government</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Is there any fee charged for admission under RTE?</h3>
+                    <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                </div>
+                <div class="faq-answer">
+                    <p>No, there is no fee charged for admission under RTE. The entire education, including textbooks, uniforms, and other essentials, is provided free of cost to children admitted under the RTE quota until the completion of elementary education (up to Class 8).</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>How is the selection done if there are more applicants than seats?</h3>
+                    <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                </div>
+                <div class="faq-answer">
+                    <p>If the number of eligible applications exceeds the available seats, the selection is done through a transparent lottery system conducted in the presence of parents and representatives from the education department. The lottery process ensures fair and unbiased selection of candidates.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Can a school deny admission under RTE?</h3>
+                    <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                </div>
+                <div class="faq-answer">
+                    <p>No, schools cannot deny admission to eligible children under RTE. However, admission can be refused if:</p>
+                    <ul>
+                        <li>The child is not of the appropriate age for the class</li>
+                        <li>The documents submitted are found to be fraudulent</li>
+                        <li>The application is submitted after the deadline</li>
+                        <li>The family does not meet the eligibility criteria</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What is the age criteria for admission under RTE?</h3>
+                    <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                </div>
+                <div class="faq-answer">
+                    <p>For entry-level admission (Nursery/Class 1), the child must be of the age prescribed by the state government, which is typically 3-6 years as of March 31 of the admission year. For higher classes, the child should be of an age appropriate for that class. The RTE Act guarantees free and compulsory education to children between the ages of 6 and 14 years.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Can a child admitted under RTE be asked to leave after Class 8?</h3>
+                    <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                </div>
+                <div class="faq-answer">
+                    <p>The RTE Act guarantees free and compulsory education only until the completion of elementary education (up to Class 8). After Class 8, the school may charge regular fees. However, many schools continue to provide support to deserving students through scholarships or fee concessions based on merit and financial need.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What happens if my child is denied admission under RTE?</h3>
+                    <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                </div>
+                <div class="faq-answer">
+                    <p>If your child is denied admission under RTE despite meeting all eligibility criteria, you can:</p>
+                    <ol>
+                        <li>Contact the school authorities and request a written explanation</li>
+                        <li>Approach the District Education Officer (DEO) with your grievance</li>
+                        <li>File a complaint with the State Commission for Protection of Child Rights (SCPCR)</li>
+                        <li>Seek legal remedies through courts if necessary</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Do RTE students get the same facilities as other students?</h3>
+                    <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, children admitted under RTE must be treated equally with other students in all aspects of school life. There should be no discrimination in terms of seating arrangements, access to facilities, participation in school activities, or any other aspect of education. The RTE Act prohibits any form of segregation or discrimination against children admitted under the RTE quota.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>When does the RTE admission process typically begin?</h3>
+                    <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                </div>
+                <div class="faq-answer">
+                    <p>The RTE admission process typically begins in January-February each year for the upcoming academic session. However, the exact timeline may vary based on the schedule announced by the state education department. It is advisable to check with the school or the education department website for the current year's schedule.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>How can I check the status of my RTE application?</h3>
+                    <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                </div>
+                <div class="faq-answer">
+                    <p>You can check the status of your RTE application by:</p>
+                    <ul>
+                        <li>Visiting the school and inquiring at the reception</li>
+                        <li>Checking the school's website or notice board</li>
+                        <li>Using the application reference number to check status online (if available)</li>
+                        <li>Contacting the RTE helpline or the school's RTE coordinator</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="no-results" style="display: none;">
+            <p>No FAQs found matching your search. Please try different keywords or browse all questions above.</p>
+        </div>
+        
+        <div class="faq-contact">
+            <h3>Still have questions?</h3>
+            <p>If you couldn't find the answer to your question, please feel free to contact our RTE Coordinator for further assistance.</p>
+            <a href="{{ url_for('rte_helpline') }}" class="faq-contact-btn">Contact RTE Helpline</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Toggle FAQ answers
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', function() {
+                // Toggle the answer visibility
+                const answer = this.nextElementSibling;
+                const isOpen = answer.style.maxHeight;
+                
+                // Reset all other FAQs
+                document.querySelectorAll('.faq-answer').forEach(item => {
+                    item.style.maxHeight = null;
+                });
+                
+                document.querySelectorAll('.faq-toggle i').forEach(icon => {
+                    icon.className = 'fas fa-plus';
+                });
+                
+                // Toggle current FAQ
+                if (!isOpen) {
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                    this.querySelector('.faq-toggle i').className = 'fas fa-minus';
+                }
+            });
+        });
+        
+        // Open the first FAQ by default
+        if (faqQuestions.length > 0) {
+            faqQuestions[0].click();
+        }
+    });
+    
+    function searchFAQs() {
+        const searchInput = document.getElementById('faqSearch');
+        const filter = searchInput.value.toUpperCase();
+        const faqItems = document.querySelectorAll('.faq-item');
+        const noResults = document.querySelector('.no-results');
+        
+        let resultsFound = false;
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question h3').textContent;
+            const answer = item.querySelector('.faq-answer').textContent;
+            
+            if (question.toUpperCase().indexOf(filter) > -1 || answer.toUpperCase().indexOf(filter) > -1) {
+                item.style.display = "";
+                resultsFound = true;
+            } else {
+                item.style.display = "none";
+            }
+        });
+        
+        if (resultsFound) {
+            noResults.style.display = "none";
+        } else {
+            noResults.style.display = "block";
+        }
+    }
+</script>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .rte-faqs {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    
+    .faq-search {
+        position: relative;
+        margin: 30px 0;
+    }
+    
+    .faq-search input {
+        width: 100%;
+        padding: 15px 20px 15px 45px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 16px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .search-icon {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #244855;
+    }
+    
+    .faq-container {
+        margin-top: 30px;
+    }
+    
+    .faq-item {
+        background-color: white;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+    
+    .faq-question {
+        padding: 20px;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .faq-question h3 {
+        margin: 0;
+        color: #244855;
+        font-size: 18px;
+    }
+    
+    .faq-toggle {
+        color: #244855;
+        transition: transform 0.3s ease;
+    }
+    
+    .faq-answer {
+        padding: 0 20px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+    
+    .faq-answer p, .faq-answer ul, .faq-answer ol {
+        padding-bottom: 20px;
+        line-height: 1.6;
+    }
+    
+    .faq-answer ul, .faq-answer ol {
+        padding-left: 20px;
+        margin-top: 10px;
+    }
+    
+    .no-results {
+        background-color: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        margin-top: 20px;
+    }
+    
+    .faq-contact {
+        background-color: #244855;
+        color: white;
+        padding: 30px;
+        border-radius: 8px;
+        text-align: center;
+        margin-top: 40px;
+    }
+    
+    .faq-contact h3 {
+        margin-bottom: 15px;
+    }
+    
+    .faq-contact p {
+        margin-bottom: 20px;
+    }
+    
+    .faq-contact-btn {
+        display: inline-block;
+        padding: 12px 25px;
+        background-color: #FFE569;
+        color: #244855;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+    
+    .faq-contact-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    @media (max-width: 768px) {
+        .faq-question h3 {
+            font-size: 16px;
+        }
+        
+        .faq-question, .faq-answer {
+            padding: 15px;
+        }
+    }
+</style>
+{% endblock %}

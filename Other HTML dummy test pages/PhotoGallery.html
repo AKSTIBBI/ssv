@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="full">
+        <div id="header"></div> <!-- Header will load here -->
+        <!-- Main content area -->
+        <div class="mid">
+                <!-- Photo Gallery Section -->
+                <section class="gallery">
+                    <h2>School Photo Gallery</h2>
+                    <div class="gallery-grid">
+                        <div class="gallery-item">
+                            <img src="images/Event1.jpg" alt="School Image 1" onclick="openLightbox(0, 'image')">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="images/Event2.jpg" alt="School Image 2" onclick="openLightbox(1, 'image')">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="images/Event3.jpg" alt="School Image 3" onclick="openLightbox(2, 'image')">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="images/Event4.jpg" alt="School Image 4" onclick="openLightbox(3, 'image')">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="images/Event5.jpg" alt="School Image 5" onclick="openLightbox(4, 'image')">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="images/Event6.jpg" alt="School Image 6" onclick="openLightbox(5, 'image')">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="images/Event7.jpg" alt="School Image 7" onclick="openLightbox(6, 'image')">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="images/Event8.jpg" alt="School Image 8" onclick="openLightbox(7, 'image')">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="images/Event9.jpg" alt="School Image 9" onclick="openLightbox(8, 'image')">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="images/Event10.jpg" alt="School Image 10" onclick="openLightbox(9, 'image')">
+                        </div>
+                    </div>
+                </section>
+            
+                <!-- Lightbox Container for Images -->
+                <div id="lightbox" class="lightbox">
+                    <span class="close" onclick="closeLightbox()">&times;</span>
+                    <span class="prev" onclick="changeMedia(-1)">&#10094;</span>
+                    <div id="lightbox-content" class="lightbox-content"></div>
+                    <span class="next" onclick="changeMedia(1)">&#10095;</span>
+                </div>
+            <div id="footer"></div> <!-- Footer will load here -->
+        </div>
+        <!-- Link to the external JavaScript file -->
+        <script src="script.js"></script>
+</body>
+
+</html>

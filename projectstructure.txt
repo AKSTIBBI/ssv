@@ -1,0 +1,10 @@
+SSVET-Website/
+├── index.html
+├── real/
+│   ├── css/         (style.css, header.css, …)
+│   ├── js/          (script.js, syllabus.js, …)
+│   ├── json/        (facultyData.json, fees.json, …)
+│   ├── php/         (notice.php, save_toppers.php, …)
+│   ├── templates/   (academics/, gallery/, join/)
+│   └── images/      (logo, faculties/, toppers/, gallery/, icons/)
+└── External: FontAwesome, Google Maps Embed

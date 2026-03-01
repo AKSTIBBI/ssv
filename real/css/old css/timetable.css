@@ -1,0 +1,82 @@
+    .timetable-section {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    
+    .timetable-controls {
+        margin: 20px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .class-selector {
+        display: flex;
+        align-items: center;
+    }
+    
+    .class-selector label {
+        margin-right: 10px;
+        font-weight: bold;
+    }
+    
+    .class-selector select {
+        padding: 8px 15px;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+    }
+    
+    .select-message {
+        text-align: center;
+        padding: 50px;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+    }
+    
+    .timetable {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background-color: white;
+    }
+    
+    .timetable th, .timetable td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: center;
+    }
+    
+    .timetable th {
+        background-color: #244855;
+        color: white;
+    }
+    
+    .timetable tr:hover {
+        background-color: #f5f5f5;
+    }
+    
+    .break {
+        background-color: #FFE569;
+        font-weight: bold;
+    }
+    
+    .timetable-notes {
+        margin-top: 30px;
+        background-color: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+    }
+    
+    .timetable-notes h3 {
+        color: #244855;
+        margin-bottom: 10px;
+    }
+    
+    .timetable-notes ul {
+        padding-left: 20px;
+    }
+    
+    .timetable-notes li {
+        margin-bottom: 5px;
+    }

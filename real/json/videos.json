@@ -1,0 +1,27 @@
+[
+  {
+    "title": "Cultural Event",
+    "image_path": "real/images/gallery/event1.jpg",
+    "video_path": "real/videos/gallery/video1.mp4",
+    "category": "activities"
+  },
+  {
+    "title": "Annual Function 2023",
+    "image_path": "real/images/gallery/event2.jpg",
+    "video_path": "real/videos/gallery/video1.mp4",
+    "category": "events"
+  },
+  {
+    "title": "Virtual Campus Tour",
+    "image_path": "real/images/gallery/event3.jpg",
+    "video_path": "real/videos/gallery/video2.mp4",
+    "category": "campus"
+  },
+  {
+  "title": "YouTube Video Example",
+  "image_path": "https://img.youtube.com/vi/c5I199uvV2E/0.jpg",
+  "video_path": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+  "category": "online",
+  "youtube": true
+}
+]

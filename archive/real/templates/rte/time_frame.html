@@ -1,0 +1,296 @@
+{% extends 'base.html' %}
+
+{% block title %}SHRI SIDDHI VINAYAK EDUCATIONAL TRUST TIBBI - RTE Time Frame{% endblock %}
+
+{% block content %}
+<div class="mid">
+    <div class="rte-timeframe">
+        <h2>RTE Admission Time Frame</h2>
+        
+        <div class="timeframe-intro">
+            <p>The admission process under the Right to Education (RTE) Act follows a specific schedule as prescribed by the Education Department of Rajasthan. The timeline is designed to ensure a transparent and organized admission process for children from disadvantaged groups and economically weaker sections.</p>
+            <p>Please note that the exact dates may vary slightly each year based on government notifications. The general timeline for the 2023-24 academic session is provided below:</p>
+        </div>
+        
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">January</div>
+                <div class="timeline-content">
+                    <h3>Notification and Advertisement</h3>
+                    <ul>
+                        <li>Official notification for RTE admissions by the Education Department</li>
+                        <li>Advertisement in local newspapers and school notice board</li>
+                        <li>Announcement on school website about the commencement of RTE admissions</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-date">January - February</div>
+                <div class="timeline-content">
+                    <h3>Application Process</h3>
+                    <ul>
+                        <li>Distribution of application forms at school reception</li>
+                        <li>Online application form available on school website</li>
+                        <li>Assistance provided to parents in filling application forms</li>
+                        <li>Awareness sessions for parents about the RTE admission process</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-date">March</div>
+                <div class="timeline-content">
+                    <h3>Submission and Verification</h3>
+                    <ul>
+                        <li>Last date for submission of completed application forms</li>
+                        <li>Verification of documents submitted by applicants</li>
+                        <li>Preparation of list of eligible candidates</li>
+                        <li>Display of eligible candidates list on school notice board and website</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-date">March - April</div>
+                <div class="timeline-content">
+                    <h3>Selection Process</h3>
+                    <ul>
+                        <li>Lottery draw (if number of applications exceeds available seats)</li>
+                        <li>Announcement of selected candidates</li>
+                        <li>Display of selected candidates list on school notice board and website</li>
+                        <li>Communication to selected candidates via SMS/email/phone</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-date">April</div>
+                <div class="timeline-content">
+                    <h3>Admission Formalities</h3>
+                    <ul>
+                        <li>Completion of admission formalities by selected candidates</li>
+                        <li>Submission of original documents for verification</li>
+                        <li>Issuance of admission confirmation letter</li>
+                        <li>Parent orientation program for newly admitted students</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-date">May - June</div>
+                <div class="timeline-content">
+                    <h3>Second Round (If Required)</h3>
+                    <ul>
+                        <li>Second round of admissions for vacant seats (if any)</li>
+                        <li>Notification for second round on school notice board and website</li>
+                        <li>Selection process for second round candidates</li>
+                        <li>Completion of admission formalities for second round candidates</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-date">June - July</div>
+                <div class="timeline-content">
+                    <h3>Commencement of Academic Session</h3>
+                    <ul>
+                        <li>Distribution of textbooks, uniforms, and study materials to RTE students</li>
+                        <li>Special orientation program for RTE students and their parents</li>
+                        <li>Beginning of regular classes for all students</li>
+                        <li>Submission of final admission report to the Education Department</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="timeframe-notes">
+            <h3>Important Notes:</h3>
+            <ul>
+                <li>All dates are tentative and subject to change as per the directives of the Education Department of Rajasthan.</li>
+                <li>Parents/guardians are advised to regularly check the school notice board, website, and local newspapers for any updates regarding RTE admissions.</li>
+                <li>No application fee is charged for RTE admissions.</li>
+                <li>Applications received after the last date will not be considered under any circumstances.</li>
+                <li>The school reserves the right to verify the authenticity of all documents submitted. In case of any fraudulent information or documents, the admission will be cancelled immediately.</li>
+                <li>For any queries related to RTE admissions, please contact our RTE Coordinator at <strong>rte@ssvtrust.com</strong> or visit the school office during working hours.</li>
+            </ul>
+        </div>
+        
+        <div class="cta-box">
+            <h3>Apply for RTE Admission</h3>
+            <p>Applications for RTE admissions for the academic year 2023-24 are now being accepted. Download the application form or collect it from the school office.</p>
+            <div class="cta-buttons">
+                <a href="#" class="cta-button">Download Application Form</a>
+                <a href="{{ url_for('rte_helpline') }}" class="cta-button secondary">Contact RTE Helpline</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .rte-timeframe {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    
+    .timeframe-intro {
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+    }
+    
+    .timeframe-intro p {
+        line-height: 1.6;
+        margin-bottom: 10px;
+    }
+    
+    .timeline {
+        position: relative;
+        margin: 40px 0;
+    }
+    
+    .timeline::before {
+        content: '';
+        position: absolute;
+        width: 4px;
+        background-color: #244855;
+        top: 0;
+        bottom: 0;
+        left: 120px;
+        margin-left: -2px;
+    }
+    
+    .timeline-item {
+        display: flex;
+        margin-bottom: 30px;
+        position: relative;
+    }
+    
+    .timeline-date {
+        width: 110px;
+        padding: 10px;
+        background-color: #244855;
+        color: white;
+        font-weight: bold;
+        text-align: center;
+        border-radius: 4px;
+        z-index: 1;
+        flex-shrink: 0;
+    }
+    
+    .timeline-content {
+        margin-left: 30px;
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        flex-grow: 1;
+    }
+    
+    .timeline-content h3 {
+        color: #244855;
+        margin-bottom: 10px;
+    }
+    
+    .timeline-content ul {
+        padding-left: 20px;
+    }
+    
+    .timeline-content li {
+        margin-bottom: 5px;
+        line-height: 1.6;
+    }
+    
+    .timeframe-notes {
+        background-color: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+        margin-top: 30px;
+    }
+    
+    .timeframe-notes h3 {
+        color: #244855;
+        margin-bottom: 10px;
+    }
+    
+    .timeframe-notes ul {
+        padding-left: 20px;
+    }
+    
+    .timeframe-notes li {
+        margin-bottom: 5px;
+        line-height: 1.6;
+    }
+    
+    .cta-box {
+        background-color: #244855;
+        color: white;
+        padding: 30px;
+        border-radius: 8px;
+        margin-top: 30px;
+        text-align: center;
+    }
+    
+    .cta-box h3 {
+        margin-bottom: 15px;
+    }
+    
+    .cta-box p {
+        margin-bottom: 20px;
+    }
+    
+    .cta-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+    
+    .cta-button {
+        display: inline-block;
+        padding: 12px 25px;
+        background-color: #FFE569;
+        color: #244855;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+    
+    .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    .cta-button.secondary {
+        background-color: transparent;
+        border: 2px solid white;
+        color: white;
+    }
+    
+    @media (max-width: 768px) {
+        .timeline::before {
+            left: 30px;
+        }
+        
+        .timeline-item {
+            flex-direction: column;
+        }
+        
+        .timeline-date {
+            width: auto;
+            max-width: 150px;
+            margin-bottom: 15px;
+        }
+        
+        .timeline-content {
+            margin-left: 50px;
+        }
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}SHRI SIDDHI VINAYAK EDUCATIONAL TRUST TIBBI - Notice Board{% endblock %}
+
+{% block content %}
+<div class="mid">
+    <div class="noticeboardmid">
+        <div class="indexmid1">
+            <div class="notice-container">
+                <h2>News & Notice</h2>
+                <div class="notice-container">
+                    <div class="notice-scroller">
+                        {% if notices %}
+                            {% for notice in notices %}
+                                <div class="notice-item">
+                                    <div class="notice-content">
+                                        <div class="notice-date">
+                                            <h5 class="date-number">{{ notice.date }}</h5>
+                                            <div class="date-divider"></div>
+                                            <span class="date-month">{{ notice.month }}</span>
+                                        </div>
+                                        <div class="notice-details">
+                                            <p class="notice-title">{{ notice.title }}</p>
+                                            <p>{{ notice.description }}</p>
+                                            <ul class="notice-meta">
+                                                <li><span class="meta-icon">&#128100;</span> {{ notice.author }}</li>
+                                                <li><span class="meta-icon">&#128197;</span> {{ notice.publish_date }}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <div class="notice-item">
+                                <div class="notice-content">
+                                    <p>No notices available at this time.</p>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
