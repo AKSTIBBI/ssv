@@ -2,6 +2,7 @@
 require_once 'config.php';
 require_once 'helpers.php';
 require_once 'auth.php';
+require_once 'toppers_repository.php';
 
 require_admin_login();
 
@@ -9,7 +10,7 @@ $flash_message = $_SESSION['flash_message'] ?? '';
 $flash_type = $_SESSION['flash_type'] ?? '';
 unset($_SESSION['flash_message'], $_SESSION['flash_type']);
 
-$toppers = get_json_data(TOPPERS_JSON, []);
+$toppers = toppers_get_grouped();
 if (!is_array($toppers)) {
     $toppers = [];
 }
@@ -130,7 +131,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['flash_type'] = 'success';
             }
 
-            if (!save_json_file(TOPPERS_JSON, $toppers)) {
+            if (!toppers_replace_all_grouped($toppers)) {
                 $_SESSION['flash_message'] = 'Failed to save toppers data.';
                 $_SESSION['flash_type'] = 'error';
             }
@@ -148,7 +149,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (empty($toppers[$year])) {
                 unset($toppers[$year]);
             }
-            if (save_json_file(TOPPERS_JSON, $toppers)) {
+            if (toppers_replace_all_grouped($toppers)) {
                 $_SESSION['flash_message'] = 'Topper deleted successfully.';
                 $_SESSION['flash_type'] = 'success';
             } else {

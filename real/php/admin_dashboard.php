@@ -2,6 +2,10 @@
 require_once 'config.php';
 require_once 'helpers.php';
 require_once 'auth.php';
+require_once 'faculties_repository.php';
+require_once 'notices_repository.php';
+require_once 'toppers_repository.php';
+require_once 'photos_repository.php';
 
 // Check authentication
 require_admin_login();
@@ -14,14 +18,14 @@ if (Auth::has_timed_out()) {
 $admin_email = get_admin_email();
 
 // Load statistics
-$faculties = get_json_data(FACULTY_JSON);
-$notices = get_json_data(NOTICES_JSON);
-$toppers = get_json_data(TOPPERS_JSON);
-$photos = get_json_data(PHOTOS_JSON);
+$faculties = faculties_get_all();
+$notices = notices_get_all();
+$toppers = toppers_get_grouped();
+$photos = photos_get_all();
 
 $faculty_count = count($faculties);
 $notice_count = count($notices);
-$topper_count = count($toppers);
+$topper_count = toppers_count_total($toppers, true);
 $photo_count = count($photos);
 // load career application count
 $career_apps = get_json_data(JSON_PATH . 'career_applications.json');
@@ -62,6 +66,7 @@ $career_count = count($career_apps);
         .dashboard-card.photos .icon { color:#7c52b8; }
         .dashboard-card.admissions .icon { color:#0f8b9c; }
         .dashboard-card.career-apps .icon { color:#5f7386; }
+        .dashboard-card.sms .icon { color:#0f8b9c; }
         .dashboard-card a { display:inline-flex; align-items:center; justify-content:center; margin-top:8px; color:var(--color-primary); text-decoration:none; font-weight:600; font-size:14px; }
         .dashboard-card a:hover { text-decoration:underline; }
 
@@ -141,6 +146,13 @@ $career_count = count($career_apps);
                 <h3>Career Applications</h3>
                 <div class="count"><?php echo isset($career_count) ? $career_count : 0; ?></div>
                 <a href="admin_careers.php">View Applications</a>
+            </div>
+
+            <div class="dashboard-card sms">
+                <div class="icon"><i class="fas fa-sms"></i></div>
+                <h3>SMS Gateway</h3>
+                <div class="count"><i class="fas fa-cog"></i></div>
+                <a href="admin_sms_settings.php">Configure SMS</a>
             </div>
         </div>
 

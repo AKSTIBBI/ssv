@@ -17,6 +17,9 @@
     <a href="admin_photos.php" class="admin-nav-link<?php echo basename($_SERVER['PHP_SELF']) === 'admin_photos.php' ? ' active' : ''; ?>">
         <i class="fas fa-images"></i> Photos
     </a>
+    <a href="admin_videos.php" class="admin-nav-link<?php echo basename($_SERVER['PHP_SELF']) === 'admin_videos.php' ? ' active' : ''; ?>">
+        <i class="fas fa-video"></i> Videos
+    </a>
     <a href="admin_faculties.php" class="admin-nav-link<?php echo basename($_SERVER['PHP_SELF']) === 'admin_faculties.php' ? ' active' : ''; ?>">
         <i class="fas fa-users"></i> Faculties
     </a>
@@ -34,5 +37,8 @@
     </a>
     <a href="admin_careers.php" class="admin-nav-link<?php echo basename($_SERVER['PHP_SELF']) === 'admin_careers.php' ? ' active' : ''; ?>">
         <i class="fas fa-briefcase"></i> Career Applications
+    </a>
+    <a href="admin_sms_settings.php" class="admin-nav-link<?php echo basename($_SERVER['PHP_SELF']) === 'admin_sms_settings.php' ? ' active' : ''; ?>">
+        <i class="fas fa-sms"></i> SMS Settings
     </a>
 </div>

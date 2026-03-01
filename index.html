@@ -76,8 +76,6 @@
                     </div>
                     <div class="gallery"><a href="javascript:void(0)">Gallery</a>
                         <ul class="submenu-1">
-                            <li><a href="javascript:void(0)" onclick="loadContent('photoGallery')">Photos</a></li>
-                            <li><a href="javascript:void(0)" onclick="loadContent('videoGallery')">Videos</a></li>
                             <li><a href="javascript:void(0)" onclick="loadContent('photos')">Photos New</a></li>
                             <li><a href="javascript:void(0)" onclick="loadContent('videos')">Videos New</a></li>
                         </ul>
@@ -102,8 +100,9 @@
                     </div>
                     <div class="joinUs"><a href="javascript:void(0)">Login</a>
                         <ul class="submenu-1">
+                          <li><a href="https://schoolpro.ssvsst.com/Default.aspx" target="_blank" rel="noopener noreferrer">School Pro</a></li>
                           <li><a href="javascript:void(0)" onclick="loadContent('schoolProLogin')">School Pro Login</a></li>
-                          <li><a href="real/php/admin_login.php" target="_blank">Admin Panel Login</a></li>
+                          <li><a href="javascript:void(0)" onclick="loadContent('adminLogin')">Admin Panel Login</a></li>
                         </ul>
                     </div>
 
@@ -375,6 +374,16 @@
 
     <!-- <script src="real/js/main.js"></script>
     <script src="real/js/admin.js"></script> -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const params = new URLSearchParams(window.location.search);
+            const openTarget = params.get('open');
+
+            if (openTarget && typeof loadContent === 'function') {
+                loadContent(openTarget);
+            }
+        });
+    </script>
 
     
 </body>

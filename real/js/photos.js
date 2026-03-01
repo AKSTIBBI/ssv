@@ -1,5 +1,5 @@
 function initPhotoGallery() {
-  fetch('real/json/photos.json')
+  fetch('real/php/photos_list.php')
     .then(response => response.json())
     .then(photos => {
       const container = document.getElementById('photo-gallery');
@@ -9,7 +9,7 @@ function initPhotoGallery() {
       photos.forEach((photo, index) => {
         html += `
           <div class="gallery-item" data-type="image" data-category="${photo.category}">
-            <img src="${photo.image_path}" alt="${photo.title}" onclick="openLightbox(${index}, 'image')">
+            <img src="${photo.image_path}" alt="${photo.title}">
             <p class="image-title">${photo.title}</p>
           </div>`;
       });

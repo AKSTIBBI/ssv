@@ -317,3 +317,229 @@ svg {
         width: 100%;
     }
 }
+
+/* New gallery lightbox enhancements */
+.lightbox {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+.lightbox.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.lightbox-content {
+    position: relative;
+}
+
+.lightbox-content img,
+.lightbox-content video,
+.lightbox-content iframe {
+    animation: lightboxZoomIn 0.25s ease;
+    border-radius: 10px;
+}
+
+.lightbox-video-wrap {
+    width: min(92vw, 1100px);
+}
+
+.lightbox-video-wrap video,
+.lightbox-video-wrap iframe {
+    width: 100%;
+    min-height: min(72vh, 520px);
+}
+
+.lightbox-fullscreen-btn {
+    margin-top: 12px;
+    padding: 10px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #ffe569;
+    color: #244855;
+    font-weight: 700;
+}
+
+.lightbox-fullscreen-btn:hover {
+    filter: brightness(0.95);
+}
+
+@keyframes lightboxZoomIn {
+    from {
+        transform: scale(0.92);
+        opacity: 0.2;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* School Pro login and welcome */
+.schoolpro-page-wrap {
+    padding: 12px;
+}
+
+.schoolpro-page {
+    max-width: 980px;
+    margin: 0 auto;
+}
+
+.schoolpro-card {
+    background: #faf6e3;
+    border-radius: 14px;
+    border-top: 5px solid #ffe569;
+    border-bottom: 5px solid #b70404;
+    box-shadow: 0 16px 34px rgba(0, 0, 0, 0.22);
+    padding: 24px;
+}
+
+.schoolpro-header {
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+.schoolpro-header h2 {
+    color: #244855;
+    margin: 0 0 8px;
+    font-size: 30px;
+}
+
+.schoolpro-header p {
+    color: #4b5f66;
+    font-size: 14px;
+}
+
+.schoolpro-form {
+    display: grid;
+    gap: 14px;
+}
+
+.schoolpro-field label {
+    display: block;
+    font-weight: 700;
+    color: #244855;
+    margin-bottom: 6px;
+}
+
+.schoolpro-field input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #c8d3d8;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.schoolpro-field input:focus {
+    outline: none;
+    border-color: #244855;
+    box-shadow: 0 0 0 3px rgba(36, 72, 85, 0.18);
+}
+
+.schoolpro-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.schoolpro-btn {
+    border: none;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.schoolpro-btn-primary {
+    background: linear-gradient(135deg, #244855 0%, #1e3f4b 100%);
+    color: #ffe569;
+}
+
+.schoolpro-btn-primary:hover {
+    filter: brightness(1.03);
+}
+
+.schoolpro-btn-secondary {
+    background: #ffffff;
+    color: #244855;
+    border: 1px solid #b7c5cb;
+}
+
+.schoolpro-otp-section.hidden {
+    display: none;
+}
+
+.schoolpro-bypass-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #244855;
+    font-size: 14px;
+}
+
+.schoolpro-status {
+    min-height: 24px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+.schoolpro-status.info {
+    background: #e7f0f4;
+    color: #1d4d62;
+}
+
+.schoolpro-status.success {
+    background: #e5f8eb;
+    color: #17643a;
+}
+
+.schoolpro-status.error {
+    background: #ffe6e6;
+    color: #8b1a1a;
+}
+
+.schoolpro-welcome-card {
+    text-align: center;
+}
+
+.schoolpro-welcome-card h2 {
+    color: #244855;
+    margin-bottom: 8px;
+}
+
+.schoolpro-welcome-sub {
+    color: #1a6d3a;
+    font-weight: 700;
+    margin-bottom: 14px;
+}
+
+.schoolpro-welcome-details {
+    background: #fff;
+    border: 1px solid #d8e1e5;
+    border-radius: 10px;
+    padding: 14px;
+    margin-bottom: 14px;
+}
+
+@media (max-width: 640px) {
+    .schoolpro-card {
+        padding: 16px;
+    }
+
+    .schoolpro-header h2 {
+        font-size: 24px;
+    }
+
+    .schoolpro-actions {
+        flex-direction: column;
+    }
+}

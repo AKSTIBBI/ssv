@@ -2,6 +2,7 @@
 require_once 'config.php';
 require_once 'helpers.php';
 require_once 'auth.php';
+require_once 'notices_repository.php';
 
 // Check authentication
 require_admin_login();
@@ -12,7 +13,7 @@ if (Auth::has_timed_out()) {
 }
 
 // Load notices
-$notices = get_json_data(NOTICES_JSON, []);
+$notices = notices_get_all();
 
 // Handle POST requests (Add/Edit/Delete)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -60,14 +61,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'deleted' => false
         ];
 
-        // Add to beginning for newest first
-        array_unshift($notices, $new_notice);
-
         // Save
-        if (save_json_file(NOTICES_JSON, $notices)) {
+        [$ok, ] = notices_add($new_notice);
+        if ($ok) {
             $_SESSION['success'] = 'Notice added successfully!';
         } else {
-            $_SESSION['error'] = 'Failed to save notice. Check file permissions.';
+            $_SESSION['error'] = 'Failed to save notice.';
         }
         redirect('admin_notices.php');
     }
@@ -98,31 +97,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             redirect('admin_notices.php');
         }
 
-        // Find and update
-        $found = false;
-        foreach ($notices as &$notice) {
-            if ($notice['notice_id'] === $notice_id) {
-                $notice['title'] = $title;
-                $notice['description'] = $description;
-                $notice['author'] = !empty($author) ? $author : $notice['author'];
-                $notice['date'] = !empty($date) ? $date : $notice['date'];
-                $notice['month'] = !empty($month) ? $month : $notice['month'];
-                $notice['publish_date'] = !empty($publish_date) ? $publish_date : $notice['publish_date'];
-                $found = true;
+        $existing = null;
+        foreach ($notices as $n) {
+            if (($n['notice_id'] ?? '') === $notice_id) {
+                $existing = $n;
                 break;
             }
         }
-
-        if (!$found) {
+        if (!$existing) {
             $_SESSION['error'] = 'Notice not found';
             redirect('admin_notices.php');
         }
 
-        // Save
-        if (save_json_file(NOTICES_JSON, $notices)) {
+        $payload = [
+            'title' => $title,
+            'description' => $description,
+            'author' => !empty($author) ? $author : ($existing['author'] ?? 'Admin'),
+            'date' => !empty($date) ? $date : ($existing['date'] ?? date('d')),
+            'month' => !empty($month) ? $month : ($existing['month'] ?? date('M')),
+            'publish_date' => !empty($publish_date) ? $publish_date : ($existing['publish_date'] ?? date('d-M-Y'))
+        ];
+
+        if (notices_update($notice_id, $payload)) {
             $_SESSION['success'] = 'Notice updated successfully!';
         } else {
-            $_SESSION['error'] = 'Failed to update notice. Check file permissions.';
+            $_SESSION['error'] = 'Failed to update notice.';
         }
         redirect('admin_notices.php');
     }
@@ -136,27 +135,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             redirect('admin_notices.php');
         }
 
-        // Find and mark as deleted
-        $found = false;
-        foreach ($notices as &$notice) {
-            if ($notice['notice_id'] === $notice_id) {
-                $notice['deleted'] = true;
-                $found = true;
-                break;
-            }
-        }
-
-        if (!$found) {
+        if (!notices_set_deleted($notice_id, true)) {
             $_SESSION['error'] = 'Notice not found';
             redirect('admin_notices.php');
         }
-
-        // Save
-        if (save_json_file(NOTICES_JSON, $notices)) {
-            $_SESSION['success'] = 'Notice deleted successfully!';
-        } else {
-            $_SESSION['error'] = 'Failed to delete notice. Check file permissions.';
-        }
+        $_SESSION['success'] = 'Notice deleted successfully!';
         redirect('admin_notices.php');
     }
 
@@ -169,27 +152,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             redirect('admin_notices.php');
         }
 
-        // Find and restore
-        $found = false;
-        foreach ($notices as &$notice) {
-            if ($notice['notice_id'] === $notice_id) {
-                $notice['deleted'] = false;
-                $found = true;
-                break;
-            }
-        }
-
-        if (!$found) {
+        if (!notices_set_deleted($notice_id, false)) {
             $_SESSION['error'] = 'Notice not found';
             redirect('admin_notices.php');
         }
-
-        // Save
-        if (save_json_file(NOTICES_JSON, $notices)) {
-            $_SESSION['success'] = 'Notice restored successfully!';
-        } else {
-            $_SESSION['error'] = 'Failed to restore notice. Check file permissions.';
-        }
+        $_SESSION['success'] = 'Notice restored successfully!';
         redirect('admin_notices.php');
     }
 }

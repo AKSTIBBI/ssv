@@ -7,6 +7,7 @@
 require_once 'config.php';
 require_once 'helpers.php';
 require_once 'auth.php';
+require_once 'faculties_repository.php';
 
 // Check authentication
 require_admin_login();
@@ -26,7 +27,7 @@ $flash_message = '';
 $flash_type = '';
 
 // Load faculty data
-$faculties = get_json_data(FACULTY_JSON);
+$faculties = faculties_get_all();
 
 // Handle actions
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -57,17 +58,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $form_errors = validate_faculty($faculty_data);
         
         if (empty($form_errors)) {
-            // Add to array
-            $faculties[] = $faculty_data;
-            
-            // Save to file
-            if (save_json_file(FACULTY_JSON, $faculties)) {
+            [$ok, ] = faculties_add($faculty_data);
+            if ($ok) {
                 $flash_message = "Faculty added successfully!";
                 $flash_type = 'success';
                 log_message("Faculty added: $name", 'info');
                 header("Refresh: 2; url=" . $_SERVER['PHP_SELF']);
             } else {
-                $flash_message = "Error saving faculty data. Check file permissions.";
+                $flash_message = "Error saving faculty data. Check server permissions.";
                 $flash_type = 'error';
                 log_message("Failed to save faculty data", 'error');
             }
@@ -77,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     // ===== UPDATE FACULTY =====
     elseif ($action === 'edit') {
-        $edit_index = intval($_POST['edit_id'] ?? -1);
+        $edit_faculty_id = safe_trim($_POST['edit_id'] ?? '');
         $name = safe_trim($_POST['name'] ?? '');
         $title = safe_trim($_POST['title'] ?? '');
         $image = safe_trim($_POST['image'] ?? '');
@@ -92,14 +90,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $form_errors = validate_faculty($faculty_data);
         
         if (empty($form_errors)) {
-            if ($edit_index >= 0 && $edit_index < count($faculties)) {
-                $old_name = $faculties[$edit_index]['name'];
-                $faculties[$edit_index] = $faculty_data;
-                
-                if (save_json_file(FACULTY_JSON, $faculties)) {
+            if ($edit_faculty_id !== '') {
+                $old_name = '';
+                foreach ($faculties as $faculty_item) {
+                    if (($faculty_item['faculty_id'] ?? '') === $edit_faculty_id) {
+                        $old_name = $faculty_item['name'];
+                        break;
+                    }
+                }
+
+                if (faculties_update($edit_faculty_id, $faculty_data)) {
                     $flash_message = "Faculty updated successfully!";
                     $flash_type = 'success';
-                    log_message("Faculty updated: $old_name → $name", 'info');
+                    log_message("Faculty updated: $old_name -> $name", 'info');
                     header("Refresh: 2; url=" . $_SERVER['PHP_SELF']);
                 } else {
                     $flash_message = "Error updating faculty data.";
@@ -116,13 +119,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     // ===== DELETE FACULTY =====
     elseif ($action === 'delete') {
-        $delete_id = intval($_POST['delete_id'] ?? -1);
-        
-        if ($delete_id >= 0 && $delete_id < count($faculties)) {
-            $deleted_name = $faculties[$delete_id]['name'];
-            array_splice($faculties, $delete_id, 1);
-            
-            if (save_json_file(FACULTY_JSON, $faculties)) {
+        $delete_id = safe_trim($_POST['delete_id'] ?? '');
+
+        if ($delete_id !== '') {
+            $deleted_name = '';
+            foreach ($faculties as $faculty_item) {
+                if (($faculty_item['faculty_id'] ?? '') === $delete_id) {
+                    $deleted_name = $faculty_item['name'];
+                    break;
+                }
+            }
+
+            if (faculties_set_deleted($delete_id, true)) {
                 $flash_message = "Faculty deleted successfully!";
                 $flash_type = 'success';
                 log_message("Faculty deleted: $deleted_name", 'info');
@@ -141,10 +149,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 // Check if showing edit form
 if (isset($_GET['edit'])) {
-    $edit_id = intval($_GET['edit']);
-    if ($edit_id >= 0 && $edit_id < count($faculties)) {
-        $current_page = 'form';
-        $edit_data = $faculties[$edit_id];
+    $edit_id = safe_trim($_GET['edit']);
+    foreach ($faculties as $faculty_item) {
+        if (($faculty_item['faculty_id'] ?? '') === $edit_id) {
+            $current_page = 'form';
+            $edit_data = $faculty_item;
+            break;
+        }
     }
 }
 
@@ -155,7 +166,7 @@ if (isset($_GET['add'])) {
 }
 
 // Reload faculties list after potential modifications
-$faculties = get_json_data(FACULTY_JSON);
+$faculties = faculties_get_all();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -339,7 +350,7 @@ $faculties = get_json_data(FACULTY_JSON);
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($faculties as $index => $faculty): ?>
+                                        <?php foreach ($faculties as $faculty): ?>
                                             <tr>
                                                 <td>
                                                     <strong><?php echo safe_output($faculty['name']); ?></strong>
@@ -356,7 +367,7 @@ $faculties = get_json_data(FACULTY_JSON);
                                                     <?php endif; ?>
                                                 </td>
                                                 <td class="action-cell">
-                                                    <a href="admin_faculties.php?edit=<?php echo $index; ?>" 
+                                                    <a href="admin_faculties.php?edit=<?php echo safe_output($faculty['faculty_id'] ?? ''); ?>" 
                                                        class="action-btn edit-btn" 
                                                        title="Edit Faculty"
                                                        data-toggle="tooltip">
@@ -366,7 +377,7 @@ $faculties = get_json_data(FACULTY_JSON);
                                                           onsubmit="return confirm('Are you sure you want to delete this faculty member? This action cannot be undone.');">
                                                         <?php echo csrf_token_input(); ?>
                                                         <input type="hidden" name="action" value="delete">
-                                                        <input type="hidden" name="delete_id" value="<?php echo $index; ?>">
+                                                        <input type="hidden" name="delete_id" value="<?php echo safe_output($faculty['faculty_id'] ?? ''); ?>">
                                                         <button type="submit" class="action-btn delete-btn" 
                                                                 title="Delete Faculty"
                                                                 data-toggle="tooltip">

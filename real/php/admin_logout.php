@@ -6,6 +6,6 @@ require_once 'auth.php';
 // Logout the admin
 admin_logout();
 
-// Redirect to login
-redirect('admin_login.php?logout=success');
+// Redirect back to website and open admin login in middle section
+redirect('/Project_SSV_Website/index.html?open=adminLogin&logout=success');
 ?>

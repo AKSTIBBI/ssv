@@ -26,3 +26,38 @@
 [2026-02-28 21:46:14] [info] Admin logged in: admin@example.com
 [2026-02-28 23:19:29] [info] Admin logged in: admin@example.com
 [2026-02-28 23:20:55] [info] Admin logged out: admin@example.com
+[2026-03-01 12:09:45] [info] Admin logged in: admin@example.com
+[2026-03-01 12:10:14] [info] Admin logged in: admin@example.com
+[2026-03-01 12:10:43] [info] Admin logged in: admin@example.com
+[2026-03-01 12:12:52] [info] Admin logged out: admin@example.com
+[2026-03-01 12:13:27] [info] Admin logged in: admin@example.com
+[2026-03-01 12:13:41] [info] Admin logged out: admin@example.com
+[2026-03-01 12:16:40] [info] Admin logged in: admin@example.com
+[2026-03-01 12:16:48] [info] Admin logged out: admin@example.com
+[2026-03-01 12:59:30] [info] Admin logged in: admin@example.com
+[2026-03-01 12:59:35] [info] Admin logged out: admin@example.com
+[2026-03-01 12:59:59] [info] Admin logged in: admin@example.com
+[2026-03-01 13:00:13] [info] Admin logged out: admin@example.com
+[2026-03-01 13:48:54] [info] Admin logged in: admin@example.com
+[2026-03-01 13:48:56] [info] Admin logged out: admin@example.com
+[2026-03-01 14:06:11] [info] Admin logged in: admin@example.com
+[2026-03-01 14:11:30] [info] Dummy OTP send for 9876543213 (OTP: 258177)
+[2026-03-01 14:12:20] [info] Dummy OTP send for 9876543456 (OTP: 530409)
+[2026-03-01 14:12:41] [info] Dummy OTP send for 9876543234 (OTP: 853100)
+[2026-03-01 14:14:09] [info] Dummy OTP send for 9876543234 (OTP: 167369)
+[2026-03-01 14:14:35] [info] Dummy OTP send for 9876543234 (OTP: 331921)
+[2026-03-01 14:18:57] [info] Test SMS (dummy mode) to 9571101240 OTP: 812118
+[2026-03-01 14:19:37] [info] Test SMS (dummy mode) to 9571101240 OTP: 198129
+[2026-03-01 14:20:13] [info] Admin logged out: admin@example.com
+[2026-03-01 14:38:33] [info] Dummy OTP send for 9876543223 (OTP: 741710)
+[2026-03-01 14:38:50] [info] Admin logged in: admin@example.com
+[2026-03-01 14:56:15] [info] Admin logged out: admin@example.com
+[2026-03-01 14:56:39] [info] Dummy SMS send to 7987654345 OTP: 935047
+[2026-03-01 15:08:29] [info] Admin logged in: admin@example.com
+[2026-03-01 15:21:08] [info] Faculty added: TEST EMP
+[2026-03-01 15:22:22] [info] Faculty updated: TEST EMP -> TEST EMP
+[2026-03-01 18:52:06] [info] Admin logged out: admin@example.com
+[2026-03-01 18:53:15] [info] Admin logged in: admin@example.com
+[2026-03-01 18:54:14] [info] Admin logged out: admin@example.com
+[2026-03-01 20:37:13] [info] Admin logged in: admin@example.com
+[2026-03-01 20:42:54] [info] Admin logged out: admin@example.com

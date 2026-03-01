@@ -1,5 +1,5 @@
 <?php
-$targetDir = "../images/toppers/";
+$targetDir = "../images/Toppers/";
 $response = ["success" => false, "message" => "", "imagePath" => ""];
 
 if (isset($_FILES["topperImage"])) {
@@ -10,7 +10,7 @@ if (isset($_FILES["topperImage"])) {
 
     if (move_uploaded_file($file["tmp_name"], $targetFile)) {
         $response["success"] = true;
-        $response["imagePath"] = "real/images/toppers/" . $uniqueName;
+        $response["imagePath"] = "real/images/Toppers/" . $uniqueName;
     } else {
         $response["message"] = "Upload failed.";
     }

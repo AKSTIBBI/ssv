@@ -2,6 +2,7 @@
 require_once 'config.php';
 require_once 'helpers.php';
 require_once 'auth.php';
+require_once 'photos_repository.php';
 
 require_admin_login();
 
@@ -9,7 +10,7 @@ $flash_message = $_SESSION['flash_message'] ?? '';
 $flash_type = $_SESSION['flash_type'] ?? '';
 unset($_SESSION['flash_message'], $_SESSION['flash_type']);
 
-$photos = get_json_data(PHOTOS_JSON, []);
+$photos = photos_get_all();
 if (!is_array($photos)) {
     $photos = [];
 }
@@ -78,32 +79,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if (empty($errors)) {
             if ($action === 'add') {
-                $photos[] = [
+                $new_photo = [
                     'title' => $title,
                     'image_path' => $image_path,
                     'category' => strtolower($category)
                 ];
-                $_SESSION['flash_message'] = 'Photo added successfully.';
-                $_SESSION['flash_type'] = 'success';
+                if (photos_add($new_photo)) {
+                    $_SESSION['flash_message'] = 'Photo added successfully.';
+                    $_SESSION['flash_type'] = 'success';
+                } else {
+                    $_SESSION['flash_message'] = 'Failed to save photos data.';
+                    $_SESSION['flash_type'] = 'error';
+                }
             } else {
-                $index = intval($_POST['index'] ?? -1);
-                if (!isset($photos[$index])) {
+                $photo_id = safe_trim($_POST['photo_id'] ?? '');
+                if ($photo_id === '') {
                     $_SESSION['flash_message'] = 'Invalid photo selected for edit.';
                     $_SESSION['flash_type'] = 'error';
                     redirect('admin_photos.php');
                 }
-                $photos[$index]['title'] = $title;
-                $photos[$index]['category'] = strtolower($category);
-                if ($image_path !== '') {
-                    $photos[$index]['image_path'] = $image_path;
-                }
-                $_SESSION['flash_message'] = 'Photo updated successfully.';
-                $_SESSION['flash_type'] = 'success';
-            }
 
-            if (!save_json_file(PHOTOS_JSON, $photos)) {
-                $_SESSION['flash_message'] = 'Failed to save photos data.';
-                $_SESSION['flash_type'] = 'error';
+                $payload = [
+                    'title' => $title,
+                    'category' => strtolower($category),
+                    'image_path' => $image_path
+                ];
+                if (photos_update($photo_id, $payload)) {
+                    $_SESSION['flash_message'] = 'Photo updated successfully.';
+                    $_SESSION['flash_type'] = 'success';
+                } else {
+                    $_SESSION['flash_message'] = 'Failed to save photos data.';
+                    $_SESSION['flash_type'] = 'error';
+                }
             }
             redirect('admin_photos.php');
         } else {
@@ -112,33 +119,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             redirect('admin_photos.php');
         }
     } elseif ($action === 'delete') {
-        $index = intval($_POST['index'] ?? -1);
-        if (isset($photos[$index])) {
-            array_splice($photos, $index, 1);
-            if (save_json_file(PHOTOS_JSON, $photos)) {
-                $_SESSION['flash_message'] = 'Photo deleted successfully.';
-                $_SESSION['flash_type'] = 'success';
-            } else {
-                $_SESSION['flash_message'] = 'Failed to update photos data.';
-                $_SESSION['flash_type'] = 'error';
-            }
+        $photo_id = safe_trim($_POST['photo_id'] ?? '');
+        if ($photo_id !== '' && photos_delete($photo_id)) {
+            $_SESSION['flash_message'] = 'Photo deleted successfully.';
+            $_SESSION['flash_type'] = 'success';
         } else {
-            $_SESSION['flash_message'] = 'Invalid photo selected for delete.';
+            $_SESSION['flash_message'] = 'Failed to update photos data.';
             $_SESSION['flash_type'] = 'error';
         }
         redirect('admin_photos.php');
     }
 }
 
+$photos = photos_get_all();
 $edit_mode = false;
-$edit_index = -1;
+$edit_photo_id = '';
 $edit_data = null;
 if (isset($_GET['edit'])) {
-    $idx = intval($_GET['edit']);
-    if (isset($photos[$idx])) {
-        $edit_mode = true;
-        $edit_index = $idx;
-        $edit_data = $photos[$idx];
+    $candidate_id = safe_trim($_GET['edit']);
+    foreach ($photos as $photo_item) {
+        if (($photo_item['photo_id'] ?? '') === $candidate_id) {
+            $edit_mode = true;
+            $edit_photo_id = $candidate_id;
+            $edit_data = $photo_item;
+            break;
+        }
     }
 }
 
@@ -220,7 +225,7 @@ foreach ($photos as $p) {
             <form method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="csrf_token" value="<?php echo generate_csrf_token(); ?>">
                 <input type="hidden" name="action" value="<?php echo $edit_mode ? 'edit' : 'add'; ?>">
-                <?php if ($edit_mode): ?><input type="hidden" name="index" value="<?php echo safe_output((string)$edit_index); ?>"><?php endif; ?>
+                <?php if ($edit_mode): ?><input type="hidden" name="photo_id" value="<?php echo safe_output($edit_photo_id); ?>"><?php endif; ?>
                 <div class="form-row">
                     <div class="form-group">
                         <label>Photo Title *</label>
@@ -253,18 +258,18 @@ foreach ($photos as $p) {
                 <p class="empty">No photos added yet.</p>
             <?php else: ?>
                 <div class="grid">
-                    <?php foreach ($photos as $idx => $photo): ?>
+                    <?php foreach ($photos as $photo): ?>
                         <div class="card">
                             <img src="<?php echo safe_output(BASE_URL . '/' . ltrim(str_replace('real/', '', $photo['image_path'] ?? ''), '/')); ?>" alt="<?php echo safe_output($photo['title'] ?? 'photo'); ?>" onerror="this.style.display='none'">
                             <div class="card-body">
                                 <div class="card-title"><?php echo safe_output($photo['title'] ?? 'Untitled'); ?></div>
                                 <span class="chip"><?php echo safe_output($photo['category'] ?? 'uncategorized'); ?></span>
                                 <div class="actions">
-                                    <a class="btn btn-secondary" href="admin_photos.php?edit=<?php echo urlencode((string)$idx); ?>"><i class="fas fa-edit"></i> Edit</a>
+                                    <a class="btn btn-secondary" href="admin_photos.php?edit=<?php echo urlencode((string)($photo['photo_id'] ?? '')); ?>"><i class="fas fa-edit"></i> Edit</a>
                                     <form method="POST" onsubmit="return confirm('Delete this photo?');">
                                         <input type="hidden" name="csrf_token" value="<?php echo generate_csrf_token(); ?>">
                                         <input type="hidden" name="action" value="delete">
-                                        <input type="hidden" name="index" value="<?php echo safe_output((string)$idx); ?>">
+                                        <input type="hidden" name="photo_id" value="<?php echo safe_output((string)($photo['photo_id'] ?? '')); ?>">
                                         <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</button>
                                     </form>
                                 </div>

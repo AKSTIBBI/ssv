@@ -1,5 +1,5 @@
 function loadFeeStructureEditor() {
-    fetch('real/json/fees.json')
+    fetch('real/php/fees_list.php')
         .then(response => response.json())
         .then(data => {
             const container = document.getElementById('feeTableContainer');

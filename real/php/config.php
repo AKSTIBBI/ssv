@@ -22,6 +22,14 @@ define('FINANCIALS_JSON', JSON_PATH . 'financials.json');
 define('TOPPERS_JSON', JSON_PATH . 'toppersData.json');
 define('PHOTOS_JSON', JSON_PATH . 'photos.json');
 define('VIDEOS_JSON', JSON_PATH . 'videos.json');
+define('SMS_CONFIG_JSON', JSON_PATH . 'sms_config.json');
+
+// SQL Server (DB-first migration with fallback)
+define('SQLSRV_ENABLED', getenv('SSV_SQLSRV_ENABLED') === '1');
+define('SQLSRV_HOST', getenv('SSV_SQLSRV_HOST') ?: 'localhost');
+define('SQLSRV_DATABASE', getenv('SSV_SQLSRV_DATABASE') ?: 'SSV');
+define('SQLSRV_USERNAME', getenv('SSV_SQLSRV_USERNAME') ?: '');
+define('SQLSRV_PASSWORD', getenv('SSV_SQLSRV_PASSWORD') ?: '');
 
 // Admin authentication
 define('ADMIN_EMAIL', 'admin@example.com');

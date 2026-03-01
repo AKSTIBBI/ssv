@@ -1,17 +1,17 @@
 [
   {
     "title": "Annual Day Celebration",
-    "image_path": "real/images/gallery/event1.jpg",
+    "image_path": "real/images/Gallery/event1.jpg",
     "category": "events"
   },
   {
     "title": "School Library",
-    "image_path": "real/images/gallery/event2.jpg",
+    "image_path": "real/images/Gallery/event2.jpg",
     "category": "campus"
   },
   {
     "title": "Science Fair",
-    "image_path": "real/images/gallery/event3.jpg",
+    "image_path": "real/images/Gallery/event3.jpg",
     "category": "activities"
   }
 ]

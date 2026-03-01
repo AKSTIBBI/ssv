@@ -2,6 +2,7 @@
 require_once 'config.php';
 require_once 'helpers.php';
 require_once 'auth.php';
+require_once 'financials_repository.php';
 
 require_admin_login();
 
@@ -11,7 +12,7 @@ $flash_type = '';
 $errors = [];
 
 // Load financials data
-$financials = get_json_data(FINANCIALS_JSON, []);
+$financials = financials_get_all();
 
 // Handle form submissions
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['csrf_token'])) {
@@ -43,8 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['csrf_token'])) {
         }
 
         if (empty($errors)) {
-            $financials[] = $doc_data;
-            if (save_json_file(FINANCIALS_JSON, $financials)) {
+            if (financials_add($doc_data)) {
                 log_message("Financial document added: {$doc_data['title']}");
                 $flash_message = "Document added successfully!";
                 $flash_type = 'success';
@@ -80,20 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['csrf_token'])) {
         }
 
         if (empty($errors)) {
-            $found = false;
-            foreach ($financials as &$doc) {
-                if ($doc['id'] === $edit_id) {
-                    // Only update fields that are in $doc_data (preserve existing document_url if not updated)
-                    foreach ($doc_data as $key => $value) {
-                        $doc[$key] = $value;
-                    }
-                    $doc['date_modified'] = get_current_date();
-                    $found = true;
-                    break;
-                }
-            }
-
-            if ($found && save_json_file(FINANCIALS_JSON, $financials)) {
+            if (financials_update($edit_id, $doc_data)) {
                 log_message("Financial document updated: {$doc_data['title']}");
                 $flash_message = "Document updated successfully!";
                 $flash_type = 'success';
@@ -103,27 +90,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['csrf_token'])) {
         }
     } elseif ($action === 'delete') {
         $delete_id = safe_trim($_POST['delete_id'] ?? '');
-        $index = -1;
-
-        foreach ($financials as $i => $doc) {
-            if ($doc['id'] === $delete_id) {
-                $index = $i;
-                break;
-            }
-        }
-
-        if ($index >= 0) {
-            array_splice($financials, $index, 1);
-            if (save_json_file(FINANCIALS_JSON, $financials)) {
-                log_message("Financial document deleted: {$delete_id}");
-                $flash_message = "Document deleted successfully!";
-                $flash_type = 'success';
-                header("Refresh: 2; url=" . $_SERVER['PHP_SELF']);
-                exit;
-            }
+        if (financials_delete($delete_id)) {
+            log_message("Financial document deleted: {$delete_id}");
+            $flash_message = "Document deleted successfully!";
+            $flash_type = 'success';
+            header("Refresh: 2; url=" . $_SERVER['PHP_SELF']);
+            exit;
         }
     }
 }
+
+$financials = financials_get_all();
 
 // Get document for editing
 $edit_doc = null;

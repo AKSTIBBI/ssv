@@ -1,5 +1,5 @@
 function initVideoGallery() {
-  fetch('real/json/videos.json')
+  fetch('real/php/videos_list.php')
     .then(response => response.json())
     .then(videos => {
       const container = document.getElementById('video-gallery');
@@ -11,7 +11,7 @@ function initVideoGallery() {
         html += `
           <div class="gallery-item" data-type="video" data-category="${video.category}" ${youtubeAttr}>
             <div class="video-thumbnail">
-              <img src="${video.image_path}" alt="${video.title}" onclick="openLightbox(${index}, 'video')">
+              <img src="${video.image_path}" alt="${video.title}">
               <div class="play-icon"><i class="fas fa-play"></i></div>
             </div>
             <p class="image-title">${video.title}</p>

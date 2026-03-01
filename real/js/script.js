@@ -1265,23 +1265,46 @@ admission:`
 `,
 // ********Function to Load Dynamic Content
 schoolProLogin: `
- <div class="login-container">
-<div class="login-box">
-<h2>SchoolPro_Login</h2>
-<!-- Step 1: Mobile Number Form -->
-<form action="/index.html" method="get" onsubmit="validateOTP(event)">
-    <label for="mobno">Mobile No : </label>
-    <input type="text" id="mobno" name="mobno" minlength="10" maxlength="10" class="inputtextbox">
-    <button type="button" onclick="document.getElementById('hideotp').style.display='block'">Send OTP</button>
-    <section id="hideotp" style="display: none;">
-        <label for="otp">Enter OTP : </label>
-        <input type="password" name="otp" id="otp" class="inputtextbox">
-        <button type="submit" onclick="document.getElementById('hideotp').style.display='none'">Submit</button>
-        </section>
-    <button type="reset">Reset</button>
-</form>
-</div>
-</div>
+<section class="mid schoolpro-page-wrap">
+  <div class="schoolpro-page">
+    <div class="schoolpro-card">
+      <div class="schoolpro-header">
+        <h2>School Pro Login</h2>
+        <p>Secure student portal access via OTP verification</p>
+      </div>
+
+      <form id="schoolpro-login-form" class="schoolpro-form" novalidate action="#" onsubmit="return handleSchoolProSubmit(event)">
+        <div class="schoolpro-field">
+          <label for="schoolpro-mobile"><i class="fas fa-mobile-alt"></i> Mobile Number</label>
+          <input type="tel" id="schoolpro-mobile" name="mobile" maxlength="10" placeholder="Enter 10-digit mobile number" required>
+        </div>
+
+        <div class="schoolpro-actions">
+            <button type="button" id="schoolpro-send-otp" class="schoolpro-btn schoolpro-btn-primary" onclick="handleSchoolProSendOtp()">Send OTP</button>
+        </div>
+
+        <div id="schoolpro-otp-section" class="schoolpro-otp-section hidden">
+          <div class="schoolpro-field">
+            <label for="schoolpro-otp"><i class="fas fa-key"></i> Enter OTP</label>
+            <input type="password" id="schoolpro-otp" name="otp" maxlength="6" placeholder="Enter 6-digit OTP" required>
+          </div>
+
+          <label class="schoolpro-bypass-row">
+            <input type="checkbox" id="schoolpro-bypass-toggle">
+            <span>Use bypass OTP (testing mode)</span>
+          </label>
+
+          <div class="schoolpro-actions">
+            <button type="submit" class="schoolpro-btn schoolpro-btn-primary">Verify & Login</button>
+            <button type="button" id="schoolpro-resend-otp" class="schoolpro-btn schoolpro-btn-secondary" onclick="handleSchoolProSendOtp()">Resend OTP</button>
+          </div>
+        </div>
+
+        <div id="schoolpro-status" class="schoolpro-status" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+</section>
 `,
 
 dummy:`
@@ -1307,26 +1330,19 @@ dummy:`
 
 // code for adminlogin starts here
 adminLogin:
-`<section class="adminloginsection">
-<div class="login-box">
-  <h2>Login</h2>
-  <form>
-    <div class="input-box">
-      <input type="email" required>
-      <label>Email</label>
-    </div>
-    <div class="input-box">
-      <input type="password" required>
-      <label>Password</label>
-    </div>
-    <div class="options">
-      <label><input type="checkbox" checked> Remember me</label>
-      <a href="#">Forgot Password?</a>
-    </div>
-    <button type="submit">Login</button>
-    <p>Don't have an account? <a href="#"> Register here </a></p>
-  </form>
-</div>
+`<section class="mid" style="padding: 12px;">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <h2 class="toptext-2" style="text-align:center; margin-bottom: 12px;">Admin Panel Login</h2>
+    <p style="text-align:center; margin-bottom: 10px; color:#244855;">
+      Login below. After successful authentication, dashboard will open in a new tab.
+    </p>
+    <iframe
+      src="real/php/admin_login.php?embed=1"
+      title="Admin Panel Login"
+      style="width:100%; min-height: 760px; border: 0; border-radius: 10px; background: #fff;"
+      loading="lazy">
+    </iframe>
+  </div>
 </section>
 `};
 
@@ -1336,7 +1352,7 @@ adminLogin:
 
 if (contentId === 'noticeBoard') {
     // Fetch notice data dynamically
-    fetch('real/json/notices.json')
+    fetch('real/php/notices_list.php')
         .then(response => response.json())
         .then(notices => {
             let noticeHTML = `
@@ -1397,7 +1413,7 @@ if (contentId === 'noticeBoard') {
         // show a quick loading message
         contentContainer.innerHTML = '<p>Loading fee structure…</p>';
 
-        fetch('real/json/fees.json')
+        fetch('real/php/fees_list.php')
             .then(res => res.json())
             .then(data => {
                 let html = `
@@ -1632,10 +1648,13 @@ else if (contentData[contentId]) {
         loadToppersData();
     } else if (contentId === 'financials') {
         loadFinancialsData();
+    } else if (contentId === 'schoolProLogin') {
+        initSchoolProLogin();
     }
 
 } else {
     contentContainer.innerHTML = '<h2>Content not found</h2>';
+}
 }
 // *********Index.html Page content ends here *********************
 
@@ -1673,7 +1692,7 @@ async function loadFacultyData() {
 
     try {
         // ✅ CACHE-BUSTING: Append timestamp to prevent caching old faculty data
-        const response = await fetch("real/json/facultyData.json?" + new Date().getTime());
+        const response = await fetch("real/php/faculties_list.php?" + new Date().getTime());
         if (!response.ok) throw new Error("Failed to fetch faculty data.");
 
         const facultyData = await response.json();
@@ -1709,7 +1728,7 @@ async function loadToppersData() {
 
     try {
         // ✅ CACHE-BUSTING: Append timestamp to prevent caching old toppers data
-        const response = await fetch("real/json/toppersData.json?" + new Date().getTime());
+        const response = await fetch("real/php/toppers_list.php?" + new Date().getTime());
         if (!response.ok) throw new Error("Failed to fetch toppers data.");
 
         const toppersData = await response.json();
@@ -1767,7 +1786,7 @@ async function loadFinancialsData() {
     if (!financialsContainer) return;
 
     try {
-        const response = await fetch('real/json/financials.json');
+        const response = await fetch('real/php/financials_list.php');
         if (!response.ok) throw new Error('Failed to fetch financials data');
         
         const financials = await response.json();
@@ -1912,10 +1931,15 @@ function changeMedia(direction) {
 // Function to Display Noticeboard
 function displayNotices() {
     const noticeList = document.getElementById("notice-list");
+    const categoryElement = document.getElementById("category-filter");
+    const searchElement = document.getElementById("search-input");
+
+    if (!noticeList || !categoryElement || !searchElement || !Array.isArray(notices)) return;
+
     noticeList.innerHTML = ""; // Clear existing notices
 
-    const categoryFilter = document.getElementById("category-filter").value;
-    const searchQuery = document.getElementById("search-input").value.toLowerCase();
+    const categoryFilter = categoryElement.value;
+    const searchQuery = searchElement.value.toLowerCase();
 
     // Filter notices based on category and search input
     const filteredNotices = notices.filter(notice => {
@@ -1943,32 +1967,36 @@ function displayNotices() {
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("category-filter")?.addEventListener("change", displayNotices);
     document.getElementById("search-input")?.addEventListener("input", displayNotices);
+    if (document.getElementById("notice-list")) {
+        displayNotices();
+    }
 });
-
-
-// Initial loading of notices
-window.onload = displayNotices;
-
-
 
 
 // ************************************** *RTE PAGE
 // ************************************** *RTE Application Process
 
 // Inject the HTML into the page dynamically
-document.getElementById('applicationSection').innerHTML = applicationProcess;
+const applicationSectionEl = document.getElementById('applicationSection');
+if (applicationSectionEl) {
+    applicationSectionEl.innerHTML = applicationProcess;
+}
 
 // Add event listener for the "Click here" link
-document.getElementById('viewPdf').addEventListener('click', function (e) {
-    e.preventDefault(); // Prevent default link behavior
+const viewPdfEl = document.getElementById('viewPdf');
+if (viewPdfEl) {
+    viewPdfEl.addEventListener('click', function (e) {
+        e.preventDefault(); // Prevent default link behavior
 
-    const pdfUrl = "/Documents/rte_time_frame.pdf"; // Path to your PDF
-    const pdfViewer = document.getElementById('pdfViewer');
-    const pdfContainer = document.getElementById('pdfContainer');
+        const pdfUrl = "/Documents/rte_time_frame.pdf"; // Path to your PDF
+        const pdfViewer = document.getElementById('pdfViewer');
+        const pdfContainer = document.getElementById('pdfContainer');
+        if (!pdfViewer || !pdfContainer) return;
 
-    pdfViewer.src = pdfUrl; // Set the iframe source
-    pdfContainer.classList.remove('hidden'); // Remove the hidden class to show the container
-});
+        pdfViewer.src = pdfUrl; // Set the iframe source
+        pdfContainer.classList.remove('hidden'); // Remove the hidden class to show the container
+    });
+}
 
 
 // // ***********************************************Admission Page
@@ -2017,66 +2045,216 @@ document.getElementById('viewPdf').addEventListener('click', function (e) {
 // stateSelect.addEventListener("change", populateDistricts);
 
 
-// School Pro login page;
-document.addEventListener("DOMContentLoaded", function () {
-    let generatedOTP = null; // Declare globally for proper scope handling
+// School Pro login module
+const SCHOOLPRO_DEFAULT_CONFIG = {
+    otpLength: 6,
+    otpExpiryMs: 5 * 60 * 1000,
+    bypassEnabled: true,
+    bypassCode: '999999',
+    useDummySmsApi: true
+};
+let SCHOOLPRO_CONFIG = { ...SCHOOLPRO_DEFAULT_CONFIG };
 
-    document.getElementById("sendOtpBtn").addEventListener("click", sendOTP);
-    document.getElementById("loginForm").addEventListener("submit", validateOTP);
+let schoolProState = {
+    generatedOtp: '',
+    expiresAt: 0,
+    mobile: ''
+};
 
-    async function sendOTP() {
-        const mobileNumber = document.getElementById('mobno').value.trim();
+function sanitizeMobileNumber(value) {
+    return String(value || '').replace(/\D/g, '').slice(0, 10);
+}
 
-        if (mobileNumber.length !== 10 || isNaN(mobileNumber)) {
-            alert("Please enter a valid 10-digit mobile number.");
-            return;
-        }
+function isValidMobileNumber(value) {
+    return /^\d{10}$/.test(value);
+}
 
-        // Generate 6-digit OTP
-        generatedOTP = Math.floor(100000 + Math.random() * 900000);
-        console.log("Generated OTP:", generatedOTP);
-        alert("Your OTP is: " + generatedOTP);
+function generateOtp(length) {
+    const base = Math.pow(10, length - 1);
+    return String(base + Math.floor(Math.random() * (9 * base)));
+}
 
-        document.getElementById('hideotp').style.display = 'block'; // Show OTP section
+function setSchoolProStatus(message, type = 'info') {
+    const statusEl = document.getElementById('schoolpro-status');
+    if (!statusEl) return;
 
-        // SMS API details
-        const baseUrl = "https://alerts.prioritysms.com/api/v4/";
-        const apiKey = "A085b04763d2e186ca1f640d414241485";
-        const senderID = "SIDHIS";
-        const message = encodeURIComponent(`Dear user, Your OTP to login SchoolPro is ${generatedOTP}. Shri Siddhi Vinayak Shikshan Sansthan`);
-        const apiUrl = `${baseUrl}?api_key=${apiKey}&method=sms&message=${message}&to=91${mobileNumber}&sender=${senderID}`;
+    statusEl.textContent = message || '';
+    statusEl.className = `schoolpro-status ${type}`;
+}
 
-        try {
-            const response = await fetch(apiUrl, { method: "POST" });
-            const textResponse = await response.text();
-            console.log("API Response:", textResponse);
+function schoolProDummySendOtpApi(mobile, otp) {
+    // Dummy SMS integration placeholder. Replace with real SMS API later.
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve({
+                success: true,
+                requestId: `DUMMY-${Date.now()}`,
+                message: `OTP simulated for ${mobile}`,
+                otp
+            });
+        }, 600);
+    });
+}
 
-            if (textResponse.toLowerCase().includes("success")) {
-                alert("OTP sent successfully!");
-            } else {
-                alert("Failed to send OTP. Response: " + textResponse);
-            }
-        } catch (error) {
-            console.error("Error sending OTP:", error);
-            alert("Error sending OTP: " + error.message);
-        }
+async function loadSchoolProRuntimeConfig() {
+    try {
+        const response = await fetch('real/php/sms_public_config.php', { cache: 'no-store' });
+        if (!response.ok) return;
+        const payload = await response.json();
+        if (!payload || !payload.success || !payload.config) return;
+
+        const cfg = payload.config;
+        SCHOOLPRO_CONFIG = {
+            ...SCHOOLPRO_DEFAULT_CONFIG,
+            useDummySmsApi: !!cfg.use_dummy_api,
+            bypassEnabled: !!cfg.bypass_enabled,
+            bypassCode: String(cfg.bypass_code || SCHOOLPRO_DEFAULT_CONFIG.bypassCode),
+            otpExpiryMs: Math.max(60, parseInt(cfg.otp_expiry_seconds || 300, 10)) * 1000
+        };
+    } catch (error) {
+        console.warn('Unable to load SMS config, using defaults.', error);
+    }
+}
+
+function renderSchoolProWelcomePage(mobile) {
+    const contentContainer = document.getElementById('content-container');
+    if (!contentContainer) return;
+
+    contentContainer.innerHTML = `
+        <section class="mid schoolpro-page-wrap">
+            <div class="schoolpro-page">
+                <div class="schoolpro-card schoolpro-welcome-card">
+                    <h2>Welcome to School Pro</h2>
+                    <p class="schoolpro-welcome-sub">Authentication successful</p>
+                    <div class="schoolpro-welcome-details">
+                        <p><strong>Mobile:</strong> ${mobile}</p>
+                        <p>Student information module will be connected with school database in the next phase.</p>
+                    </div>
+                    <div class="schoolpro-actions">
+                        <a class="schoolpro-btn schoolpro-btn-primary" href="https://schoolpro.ssvsst.com/Default.aspx" target="_blank" rel="noopener noreferrer">Open School Pro Portal</a>
+                        <button type="button" class="schoolpro-btn schoolpro-btn-secondary" onclick="loadContent('schoolProLogin')">Back to Login</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    `;
+}
+
+async function handleSchoolProSendOtp() {
+    const mobileInput = document.getElementById('schoolpro-mobile');
+    const otpSection = document.getElementById('schoolpro-otp-section');
+    const sendOtpBtn = document.getElementById('schoolpro-send-otp');
+    const resendOtpBtn = document.getElementById('schoolpro-resend-otp');
+
+    if (!mobileInput || !otpSection || !sendOtpBtn) return false;
+
+    const mobile = sanitizeMobileNumber(mobileInput.value);
+    mobileInput.value = mobile;
+
+    if (!isValidMobileNumber(mobile)) {
+        setSchoolProStatus('Please enter a valid 10-digit mobile number.', 'error');
+        return false;
     }
 
-    function validateOTP(event) {
-        const enteredOTP = document.getElementById('otp').value;
+    const otp = generateOtp(SCHOOLPRO_CONFIG.otpLength);
+    schoolProState.generatedOtp = otp;
+    schoolProState.expiresAt = Date.now() + SCHOOLPRO_CONFIG.otpExpiryMs;
+    schoolProState.mobile = mobile;
 
-        if (!generatedOTP) {
-            alert("Please request an OTP first.");
-            event.preventDefault();
-            return;
+    sendOtpBtn.disabled = true;
+    if (resendOtpBtn) resendOtpBtn.disabled = true;
+    setSchoolProStatus('Sending OTP...', 'info');
+
+    try {
+        const sendResponse = await fetch('real/php/send_schoolpro_otp.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ mobile, otp })
+        });
+        const sendResult = await sendResponse.json();
+        if (!sendResult || !sendResult.success) {
+            const msg = sendResult && sendResult.message ? sendResult.message : 'Unable to send OTP. Please try again.';
+            setSchoolProStatus(msg, 'error');
+            return false;
         }
 
-        if (enteredOTP != generatedOTP) {
-            alert("Invalid OTP! Please try again.");
-            event.preventDefault();
-        }
+        otpSection.classList.remove('hidden');
+        const testNote = SCHOOLPRO_CONFIG.bypassEnabled
+            ? ` Testing: Generated OTP is ${otp}. Bypass OTP is ${SCHOOLPRO_CONFIG.bypassCode}.`
+            : '';
+        setSchoolProStatus(`OTP sent successfully to ${mobile}. It is valid for 5 minutes.${testNote}`, 'success');
+        return false;
+    } catch (error) {
+        setSchoolProStatus(`Failed to send OTP: ${error.message}`, 'error');
+        return false;
+    } finally {
+        sendOtpBtn.disabled = false;
+        if (resendOtpBtn) resendOtpBtn.disabled = false;
     }
-});
+}
+
+function handleSchoolProSubmit(event) {
+    if (event) event.preventDefault();
+
+    const mobileInput = document.getElementById('schoolpro-mobile');
+    const otpInput = document.getElementById('schoolpro-otp');
+    const bypassToggle = document.getElementById('schoolpro-bypass-toggle');
+
+    if (!mobileInput || !otpInput) return false;
+
+    const mobile = sanitizeMobileNumber(mobileInput.value);
+    const enteredOtp = String(otpInput.value || '').trim();
+    const bypassOn = SCHOOLPRO_CONFIG.bypassEnabled && bypassToggle && bypassToggle.checked;
+
+    if (!isValidMobileNumber(mobile)) {
+        setSchoolProStatus('Please enter a valid 10-digit mobile number.', 'error');
+        return false;
+    }
+
+    if (!enteredOtp) {
+        setSchoolProStatus('Please enter OTP to continue.', 'error');
+        return false;
+    }
+
+    const bypassValid = bypassOn && enteredOtp === SCHOOLPRO_CONFIG.bypassCode;
+    const generatedOtpValid =
+        schoolProState.generatedOtp &&
+        enteredOtp === schoolProState.generatedOtp &&
+        mobile === schoolProState.mobile &&
+        Date.now() <= schoolProState.expiresAt;
+
+    if (bypassValid || generatedOtpValid) {
+        setSchoolProStatus('Authentication successful. Redirecting to welcome page...', 'success');
+        setTimeout(() => renderSchoolProWelcomePage(mobile), 350);
+        return false;
+    }
+
+    if (Date.now() > schoolProState.expiresAt && schoolProState.generatedOtp) {
+        setSchoolProStatus('OTP expired. Please request a new OTP.', 'error');
+        return false;
+    }
+
+    setSchoolProStatus('Invalid OTP. Please try again.', 'error');
+    return false;
+}
+
+function initSchoolProLogin() {
+    const mobileInput = document.getElementById('schoolpro-mobile');
+    if (!mobileInput) {
+        return;
+    }
+
+    schoolProState = {
+        generatedOtp: '',
+        expiresAt: 0,
+        mobile: ''
+    };
+    setSchoolProStatus('');
+    loadSchoolProRuntimeConfig();
+
+    mobileInput.addEventListener('input', () => {
+        mobileInput.value = sanitizeMobileNumber(mobileInput.value);
+    });
 }
 
 
@@ -2250,7 +2428,7 @@ else if (sectionId === 'manageToppers') {
     }
 
     function loadToppers(yearSelected = null) {
-        fetch('real/json/toppersData.json')
+        fetch('real/php/toppers_list.php')
             .then(res => res.json())
             .then(data => {
                 toppersData = data;
@@ -2548,7 +2726,7 @@ document.addEventListener('click', (event) => {
     // Marquee for notices
     const noticesMarquee = document.getElementById('noticesMarquee');
     if (noticesMarquee) {
-        fetch('real/json/notices.json')
+        fetch('real/php/notices_list.php')
             .then(response => response.json())
             .then(notices => {
                 if (notices && notices.length > 0) {
@@ -2604,7 +2782,7 @@ if (menuToggle && navbar) {
 }
 
 function loadNotices() {
-    fetch('real/json/notices.json')
+    fetch('real/php/notices_list.php')
         .then(response => response.json())
         .then(notices => {
             const container = document.getElementById('notices-list');
@@ -2644,7 +2822,7 @@ function deleteNotice(noticeId) {
   let toppersData = {};
 
   // Load existing data
-  fetch('real/json/toppersData.json')
+  fetch('real/php/toppers_list.php')
     .then(res => res.json())
     .then(data => {
       toppersData = data;

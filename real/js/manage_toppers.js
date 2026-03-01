@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function loadToppers() {
-        fetch('real/json/toppersData.json')
+        fetch('real/php/toppers_list.php')
             .then(response => response.json())
             .then(data => {
                 toppersData = data;

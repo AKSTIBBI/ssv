@@ -1,0 +1,13 @@
+{
+    "provider_name": "Priority SMS",
+    "api_url": "https://alerts.prioritysms.com/api/v4/",
+    "api_key": "",
+    "sender_id": "SIDHIS",
+    "method": "sms",
+    "enabled": false,
+    "use_dummy_api": true,
+    "bypass_enabled": true,
+    "bypass_code": "101240",
+    "otp_expiry_seconds": 300,
+    "updated_at": "2026-03-01 14:20:07"
+}

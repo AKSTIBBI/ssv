@@ -2,6 +2,7 @@
 require_once 'config.php';
 require_once 'helpers.php';
 require_once 'auth.php';
+require_once 'fees_repository.php';
 
 require_admin_login();
 
@@ -11,7 +12,7 @@ $flash_type = '';
 $errors = [];
 
 // Load fees data
-$fees = get_json_data(FEES_JSON, []);
+$fees = fees_get_all();
 
 // Handle form submissions
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['csrf_token'])) {
@@ -40,26 +41,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['csrf_token'])) {
         }
 
         if (empty($errors)) {
-            // Update or add fee
-            $fee_index = -1;
-            foreach ($fees as $i => $f) {
-                if ($f['class'] === $fee_data['class']) {
-                    $fee_index = $i;
+            $exists = false;
+            foreach ($fees as $f) {
+                if (strcasecmp((string)$f['class'], (string)$fee_data['class']) === 0) {
+                    $exists = true;
                     break;
                 }
             }
 
-            if ($fee_index >= 0) {
-                // Update existing
-                $fees[$fee_index] = $fee_data;
-                $message = "Fee structure updated successfully!";
-            } else {
-                // Add new
-                $fees[] = $fee_data;
-                $message = "Fee structure added successfully!";
-            }
-
-            if (save_json_file(FEES_JSON, $fees)) {
+            if (fees_upsert_by_class($fee_data)) {
+                $message = $exists ? "Fee structure updated successfully!" : "Fee structure added successfully!";
                 log_message("Fee structure updated: {$fee_data['class']}");
                 $flash_message = $message;
                 $flash_type = 'success';
@@ -72,27 +63,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['csrf_token'])) {
         }
     } elseif ($action === 'delete') {
         $delete_class = safe_trim($_POST['delete_class'] ?? '');
-        $fee_index = -1;
-
-        foreach ($fees as $i => $f) {
-            if ($f['class'] === $delete_class) {
-                $fee_index = $i;
-                break;
-            }
-        }
-
-        if ($fee_index >= 0) {
-            array_splice($fees, $fee_index, 1);
-            if (save_json_file(FEES_JSON, $fees)) {
-                log_message("Fee structure deleted: {$delete_class}");
-                $flash_message = "Fee structure deleted successfully!";
-                $flash_type = 'success';
-                header("Refresh: 2; url=" . $_SERVER['PHP_SELF']);
-                exit;
-            }
+        if (fees_delete_by_class($delete_class)) {
+            log_message("Fee structure deleted: {$delete_class}");
+            $flash_message = "Fee structure deleted successfully!";
+            $flash_type = 'success';
+            header("Refresh: 2; url=" . $_SERVER['PHP_SELF']);
+            exit;
         }
     }
 }
+
+$fees = fees_get_all();
 
 // Get fee for editing
 $edit_fee = null;
@@ -512,4 +493,3 @@ $is_editing = $edit_fee !== null;
     </div>
 </body>
 </html>
-

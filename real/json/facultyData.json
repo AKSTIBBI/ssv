@@ -83,5 +83,10 @@
         "name": "Amit Mehta",
         "title": "Sr Clerk",
         "image": "images/faculties/pna.jfif"
+    },
+    {
+        "name": "TEST EMP",
+        "title": "Maths",
+        "image": "images/faculties/director.jpeg"
     }
 ]
